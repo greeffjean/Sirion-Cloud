@@ -5,20 +5,20 @@ Sirion Cloud - Sound-Cloud clone, search titles, discover albums and tracklists 
 You will need an internet connection, Node.js installed on your computer.
 
 ## Installing
-1 - Open your text editor and make sure you are in the main directory.
-2 - Open your Terminal in your editor and enter "npm install".
+1. Open your text editor and make sure you are in the main directory.
+2. Open your Terminal in your editor and enter "npm install".
 ( now you have all the neccessary modules to test and deploy yuor app )
 
 ## Deployment 
-1 - Open your text editor and make sure you are in the main directory.
-2 - Open your Terminal in your editor and enter "npm run build".
-3 - Open your Terminal in your editor and enter "cd build".
+1. Open your text editor and make sure you are in the main directory.
+2. Open your Terminal in your editor and enter "npm run build".
+3. Open your Terminal in your editor and enter "cd build".
 ( from the build directory you can stage your website, my personal platform I use is surge.sh )
 
 ## Surge ( deployment )
-1 - install the latest version of NodeJS
-2 - install using npm by running npm install -g surge
-3 - run surge from within any directory to publish that directory onto the web.
+1. install the latest version of NodeJS
+2. install using npm by running npm install -g surge
+2. run surge from within any directory to publish that directory onto the web.
 
 ## Built With 
 Visual Studio Code
