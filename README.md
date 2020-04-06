@@ -1,3 +1,47 @@
+## Project Title
+Sirion Cloud - Sound-Cloud clone, search titles, discover albums and tracklists and explore a list of preset genres, thousands of tracks at your finger tips.
+
+## Prerequisites
+You will need an internet connection, Node.js installed on your computer.
+
+## Installing
+1 - Open your text editor and make sure you are in the main directory.
+2 - Open your Terminal in your editor and enter "npm install".
+( now you have all the neccessary modules to test and deploy yuor app )
+
+## Deployment 
+1 - Open your text editor and make sure you are in the main directory.
+2 - Open your Terminal in your editor and enter "npm run build".
+3 - Open your Terminal in your editor and enter "cd build".
+( from the build directory you can stage your website, my personal platform I use is surge.sh )
+
+## Surge ( deployment )
+1 - install the latest version of NodeJS
+2 - install using npm by running npm install -g surge
+3 - run surge from within any directory to publish that directory onto the web.
+
+## Built With 
+Visual Studio Code
+React.js
+
+## Contributing
+Deezer API.
+
+## Versioning
+none
+
+## Authors
+Jean Greeff, GitHub - https://github.com/greeffjean
+
+## License
+none
+
+## Acknowledgments
+This project is intended for demo purposes only, therefore not all features are present and or have been refined.
+
+
+
+## Auto Genrerated 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
