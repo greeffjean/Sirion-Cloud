@@ -19,12 +19,12 @@ class Musicitem extends React.Component {
     var track = this.props.info.preview;
     var album = this.props.info.album.title;
     var title = this.props.info.title_short;
-    var album_art = this.props.info.album.cover_small;
+    var albumArt = this.props.info.album.cover_small;
     if(!this.props.info.album.cover_small) {
-      album_art = this.props.info.album.cover_big
+      albumArt = this.props.info.album.cover_big
     }
     var id = this.props.selector;
-    this.props.playSong(track, album, title, album_art, id);
+    this.props.playSong(track, album, title, albumArt, id);
     this.setState({
       active: "true"
     })
@@ -70,12 +70,12 @@ class Musicitem extends React.Component {
           {/* top item section */}
           <div className='section_top'>
             <div style={{ background: `url(${this.props.info.album.cover_big})`, backgroundSize: 'cover', backgroundPosition: "center" }} className="section_top_inner">
-              <div className={this.props.selector == this.props.music_id
-                || this.props.skip_active == "true" && this.props.selector == this.props.music_id ? "play_song active" : "play_song"}>
+              <div className={this.props.selector == this.props.musicId
+                || this.props.skipActive == "true" && this.props.selector == this.props.musicId ? "play_song active" : "play_song"}>
                 <i onClick={(e) => this.playSong(e)}
-                  className={this.props.check_play == "true" && this.props.selector == this.props.music_id ? "fa fa-play play control_change" : "fa fa-play play "}></i>
+                  className={this.props.checkPlay == "true" && this.props.selector == this.props.musicId ? "fa fa-play play control_change" : "fa fa-play play "}></i>
                 <i onClick={(e) => this.pauseSong(e)}
-                  className={this.props.check_play == "true" && this.props.selector == this.props.music_id ? "fa fa-pause pause control_change" : "fa fa-pause pause"}></i>
+                  className={this.props.checkPlay == "true" && this.props.selector == this.props.musicId ? "fa fa-pause pause control_change" : "fa fa-pause pause"}></i>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ class Musicitem extends React.Component {
               <h5 onClick={(e) => this.changeToAlbum(e)}>{this.props.info.album.title}</h5>
             </div>
             <div className='bottom_right'>
-              <i className={this.props.favourite_styling == "true" ? "fa fa-heart light_up" : " fa fa-heart"}
+              <i className={this.props.favouriteStyling == "true" ? "fa fa-heart light_up" : " fa fa-heart"}
                 onClick={(e) => this.addFavourites(this.props.info)} ></i>
             </div>
           </div>

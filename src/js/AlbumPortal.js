@@ -35,11 +35,11 @@ class AlbumPortal extends React.Component {
   }
   /* Change To Artist Portal */
   changeToTrackList() {
-    this.props.changeToTrackList(this.props.album_info.artist.name)
+    this.props.changeToTrackList(this.props.albumInfo.artist.name)
   }
   /* Reset */
   resetState() {
-    this.props.reset_State()
+    this.props.resetState()
   }
 
 
@@ -49,38 +49,38 @@ class AlbumPortal extends React.Component {
   render() {
 
     /* Render Album List Items */
-    if (this.props.album_info != []) {
-      var assets = this.props.album_info;
-      var track_list = [];
-      if (this.props.album_info.tracks.data) {
-        this.props.album_info.tracks.data.map(value => {
+    if (this.props.albumInfo != []) {
+      var assets = this.props.albumInfo;
+      var trackList = [];
+      if (this.props.albumInfo.tracks.data) {
+        this.props.albumInfo.tracks.data.map(value => {
 
           /* Styling and Time Formating of Track Info */
-          var favourite_styling = [];
-          var get_minutes = Math.floor(value.duration / 60);
-          var sum = get_minutes * 60;
-          var get_seconds = value.duration - sum;
-          var time_info = {
-            get_minutes: get_minutes,
+          var favouriteStyling = [];
+          var getMinutes = Math.floor(value.duration / 60);
+          var sum = getMinutes * 60;
+          var getSeconds = value.duration - sum;
+          var timeInfo = {
+            getMinutes: getMinutes,
             sum: sum,
-            get_seconds: get_seconds,
+            getSeconds: getSeconds,
           }
-          if (time_info.get_seconds.toString().length === 1) {
-            time_info.get_seconds = "0" + time_info.get_seconds.toString();
+          if (timeInfo.getSeconds.toString().length === 1) {
+            timeInfo.getSeconds = "0" + timeInfo.getSeconds.toString();
           }
 
           /* Searching For Selected Favourites - applying correct styling */
-          this.props.favourite_log.map(val => {
+          this.props.favouriteLog.map(val => {
             if (val == value.id) {
-              favourite_styling = true
+              favouriteStyling = true
             }
           })
 
           /* Adding New List Items */
-          track_list.push(<AlbumItem
+          trackList.push(<AlbumItem
             /*PlayBack*/
-            check_play={this.props.check_play}
-            check_pause={this.props.check_pause}
+            checkPlay={this.props.checkPlay}
+            checkPause={this.props.checkPause}
             /*Functions*/
             playTrack={(value, assets) => this.playTrack(value, assets)}
             pauseTrack={(e) => this.pauseTrack(e)}
@@ -88,12 +88,12 @@ class AlbumPortal extends React.Component {
             changeToTrackList={(e) => this.changeToTrackList(e)}
             /*Info*/
             key={value.id}
-            assets={this.props.album_info}
+            assets={this.props.albumInfo}
             value={value}
-            time_info={time_info}
-            favourite_styling={favourite_styling}
-            album_info={this.props.album_info}
-            music_id={this.props.music_id}
+            timeInfo={timeInfo}
+            favouriteStyling={favouriteStyling}
+            albumInfo={this.props.albumInfo}
+            musicId={this.props.musicId}
 
 
           />)
@@ -131,7 +131,7 @@ class AlbumPortal extends React.Component {
           {/* Album Track List */}
           <div className="album_inner_left_list_container">
             <div className="album_inner_left_list">
-              {track_list}
+              {trackList}
             </div>
 
             <div className="spacer"></div>
@@ -141,14 +141,14 @@ class AlbumPortal extends React.Component {
         {/* Album Right Inforamtion */}
         <div className="album_inner_right">
           <div className="album_inner_right_information">
-            <div className="track_art_right" style={{ background: `url("${this.props.album_info.cover_big}")`, backgroundSize: "cover", backgroundPosition: "top" }} ></div>
+            <div className="track_art_right" style={{ background: `url("${this.props.albumInfo.cover_big}")`, backgroundSize: "cover", backgroundPosition: "top" }} ></div>
             <div className="overlap_info">
-              <h5 className="title">{this.props.album_info.artist.name}</h5>
-              <h4>{this.props.album_info.title}</h4>
+              <h5 className="title">{this.props.albumInfo.artist.name}</h5>
+              <h4>{this.props.albumInfo.title}</h4>
               <div className="playback_status" >
                 <h5 id="title_right">
                   {this.state.pause != "true" ? "NOW PLAYING  " : "PAUSED  "}
-                  {typeof this.props.current_music_item_title != 'undefined' && this.props.album_ready == "true" ? `${this.props.current_music_item_title}` : "--"}
+                  {typeof this.props.currentMusicItemTitle != 'undefined' && this.props.albumReady == "true" ? `${this.props.currentMusicItemTitle}` : "--"}
                 </h5>
               </div>
 

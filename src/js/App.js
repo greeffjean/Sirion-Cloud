@@ -21,9 +21,9 @@ class App extends React.Component {
   render() {
 
     /* check for unsupported screens ( < 850px, < 480px ) */
-    var screen_size_unsupported_message = [];
+    var screenSizeUnsupportedMessage = [];
     if (window.innerWidth < 850 || window.innerHeight < 480) {
-      screen_size_unsupported_message.push(<div style={{
+      screenSizeUnsupportedMessage.push(<div style={{
         height: "100%", width: "100%", background: "#f2f2f2", display: "flex", justifyContent: "center", alignItems: "center",
         position: "absolute", top: "0", zIndex: "10000"
       }}>
@@ -31,14 +31,14 @@ class App extends React.Component {
       </div>)
     }
     else {
-      screen_size_unsupported_message = [];
+      screenSizeUnsupportedMessage = [];
     }
 
 
     /* return */
     return (
       <div className="container" style={{ height: `${window.innerHeight}`, width: `${window.innerWidth}` }} >
-        {screen_size_unsupported_message}
+        {screenSizeUnsupportedMessage}
         <MusicInfo key="" />
       </div>
     );

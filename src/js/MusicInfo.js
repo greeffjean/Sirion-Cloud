@@ -16,36 +16,36 @@ class MusicInfo extends React.Component {
       /*apply browser styling*/
       browser: this.getBrowser(),
       /* music lists */
-      music_list: [],
-      favourites_music_list: [],
+      musicList: [],
+      favouritesMusicList: [],
       /*componenet active states*/
-      music_info_genre: "active",
-      music_info_album: [],
-      music_info_tracklist: [],
+      musicInfoGenre: "active",
+      musicInfoAlbum: [],
+      musicInfoTracklist: [],
       /*info variables*/
-      current_album_info: [],
-      current_search_info: [],
+      currentAlbumInfo: [],
+      currentSearchInfo: [],
       /* track identification variables */
-      current_music_items: [],
+      currentMusicItems: [],
       favourites: [],
       /*DOM styling conditions*/
-      render_search: "false",
-      skip_deactivate: "false",
-      sync_play_audio: [],
-      audioplayer_style: {
-        audio_player: { background: "hsl(200, 12%, 95%)" },
-        audio_player_titles_first: { color: "coral" },
-        audio_player_titles_second: { color: "grey" },
+      renderSearch: "false",
+      skipDeactivate: "false",
+      syncPlayAudio: [],
+      audioplayerStyle: {
+        audioPlayer: { background: "hsl(200, 12%, 95%)" },
+        audioPlayerTitlesFirst: { color: "coral" },
+        audioPlayerTitlesSecond: { color: "grey" },
       },
-      audio_skip: { color: "grey", pointerEvents: "none" },
+      audioSkip: { color: "grey", pointerEvents: "none" },
       /*miscellaneous*/
-      current_genre: [],
+      currentGenre: [],
       name: [],
       typingTimeout: 0,
-      error_message: [],
+      errorMessage: [],
     }
     /*DOM refs*/
-    this.music_containerRef = React.createRef();
+    this.musicContainerRef = React.createRef();
     this.inputRef = React.createRef();
   }
 
@@ -59,7 +59,7 @@ class MusicInfo extends React.Component {
   /* Input Search Part1  */
   changeName(event) {
     /*( on render always start at top )*/
-    this.music_containerRef.current.scrollTo(0, 0);
+    this.musicContainerRef.current.scrollTo(0, 0);
     /*(trigger load)*/
     this.triggerLoad()
     /*(disable components)*/
@@ -69,27 +69,27 @@ class MusicInfo extends React.Component {
     var term = this.state.name;
     if (event.target.value === '') {
       this.setState({
-        search_timeout_disable: true
+        searchTimeoutDisable: true
       })
-      this.searchPlayList(this.state.current_genre)
+      this.searchPlayList(this.state.currentGenre)
       return
     }
 
     /*( set state changes )*/
     else {
       this.setState({
-        track_can_play: [],
-        favourites_active: "false",
-        album_ready: "false",
-        change_component_active: "false",
-        render_search: "true",
-        skip_deactivate: "true",
-        error_message: [],
-        search_timeout_disable: false,
-        audio_skip: this.state.audio_skip_hide,
-        music_info_genre: "active",
-        music_info_album: [],
-        music_info_tracklist: [],
+        trackCanPlay: [],
+        favouritesActive: "false",
+        albumReady: "false",
+        changeComponentActive: "false",
+        renderSearch: "true",
+        skipDeactivate: "true",
+        errorMessage: [],
+        searchTimeoutDisable: false,
+        audioSkip: this.state.audioSkipHide,
+        musicInfoGenre: "active",
+        musicInfoAlbum: [],
+        musicInfoTracklist: [],
       })
 
 
@@ -99,7 +99,7 @@ class MusicInfo extends React.Component {
         clearTimeout(self.state.typingTimeout);
       }
       self.setState({
-        music_list: [],
+        musicList: [],
         name: event.target.value,
         typingTimeout: setTimeout(function () {
           if (term !== '') {
@@ -117,7 +117,7 @@ class MusicInfo extends React.Component {
     MusicDatabase.searchTitle(term).then(response => {
       /*( fetch - check for error )*/
       if (response.data.length === 0) {
-        this.state.error_message = "nothing found";
+        this.state.errorMessage = "nothing found";
         this.errorMessage()
       }
       /*( fetch - filter redundant data )*/
@@ -127,12 +127,12 @@ class MusicInfo extends React.Component {
         }
       })
       /*( fetch - apoint new data - if search_timout is not disabled )*/
-      if (this.state.search_timeout_disable === true && this.state.name.length < 2) {
+      if (this.state.searchTimeoutDisable === true && this.state.name.length < 2) {
         return
       }
       else {
         this.setState({
-          music_list: newList,
+          musicList: newList,
         })
       }
       /*( add more tracks to the render )*/
@@ -143,7 +143,7 @@ class MusicInfo extends React.Component {
   /* Change To Genre PlayList */
   searchPlayList(id) {
     /*( on render always start at top )*/
-    this.music_containerRef.current.scrollTo(0, 0);
+    this.musicContainerRef.current.scrollTo(0, 0);
     /*(trigger load)*/
     this.triggerLoad();
     /*(disable components)*/
@@ -162,41 +162,41 @@ class MusicInfo extends React.Component {
       })
       /*( apoint data )*/
       this.setState({
-        music_list: newList,
-        change_component_active: "false",
-        current_genre: response.id,
-        music_info_genre: "active",
-        music_info_album: [],
-        music_info_tracklist: [],
-        skip_deactivate: "true",
-        favourites_active: "false",
-        render_search: "false",
-        error_message: [],
-        audio_skip: this.state.audio_skip_hide,
+        musicList: newList,
+        changeComponentActive: "false",
+        currentGenre: response.id,
+        musicInfoGenre: "active",
+        musicInfoAlbum: [],
+        musicInfoTracklist: [],
+        skipDeactivate: "true",
+        favouritesActive: "false",
+        renderSearch: "false",
+        errorMessage: [],
+        audioSkip: this.state.audioSkipHide,
       })
     })
   }
 
   /* Render More Input Search */
   renderMoreSearch() {
-    var more_music = this.state.music_list;
+    var moreMusic = this.state.musicList;
     /*( fetch)*/
-    MusicDatabase.searchMoreTitles(this.state.name, this.state.music_list.length + 25).then(response => {
+    MusicDatabase.searchMoreTitles(this.state.name, this.state.musicList.length + 25).then(response => {
       response.data.map(value => {
         if (value.preview != "") {
-          more_music.push(value)
+          moreMusic.push(value)
         }
       });
     })
     /*( remove duplicate values)*/
-    var single_values_arr = more_music;
-    const uniqueList = Array.from(new Set(single_values_arr.map(a => a.id))).map(id => {
-      return single_values_arr.find(a => a.id === id)
+    var singleValuesArr = moreMusic;
+    const uniqueList = Array.from(new Set(singleValuesArr.map(a => a.id))).map(id => {
+      return singleValuesArr.find(a => a.id === id)
     })
-    more_music = uniqueList
+    moreMusic = uniqueList
     /*( apoint new data )*/
     this.setState({
-      music_list: more_music,
+      musicList: moreMusic,
     })
   }
 
@@ -205,7 +205,7 @@ class MusicInfo extends React.Component {
   /* Change To Album */
   changeToAlbum(id) {
     /*( on render always start at top )*/
-    this.music_containerRef.current.scrollTo(0, 0);
+    this.musicContainerRef.current.scrollTo(0, 0);
     /*(trigger load)*/
     this.triggerLoad();
     /*(disable components)*/
@@ -213,30 +213,30 @@ class MusicInfo extends React.Component {
     /*( empty search field )*/
     this.inputRef.current.value = '';
     /*( fetch )*/
-    var album_list = [];
+    var albumList = [];
     MusicDatabase.searchAlbum(id).then(response => {
       response.tracks.data.map(value => {
         if (value.preview != "" && value.readable != false) {
-          album_list.push(value)
+          albumList.push(value)
         }
       })
       /*( smooth functioning )*/
       setTimeout(function () { }, 1000)
       this.setState({
-        album_ready: "true",
-        music_info_genre: [],
-        music_info_album: "active",
-        music_info_tracklist: [],
-        render_search: "false",
-        error_message: [],
-        pause_tracklist_listener: "false",
-        audio_skip: this.state.audio_skip_hide,
-        change_component_active: "true",
-        skip_deactivate: "true",
-        favourites_active: "false",
-        current_album_info: response,
-        music_list: album_list,
-        artist_id: response.artist.id
+        albumReady: "true",
+        musicInfoGenre: [],
+        musicInfoAlbum: "active",
+        musicInfoTracklist: [],
+        renderSearch: "false",
+        errorMessage: [],
+        pauseTracklistListener: "false",
+        audioSkip: this.state.audioSkipHide,
+        changeComponentActive: "true",
+        skipDeactivate: "true",
+        favouritesActive: "false",
+        currentAlbumInfo: response,
+        musicList: albumList,
+        artistId: response.artist.id
       })
     })
   }
@@ -244,7 +244,7 @@ class MusicInfo extends React.Component {
   /*disable album render*/
   albumDisable() {
     this.setState({
-      album_ready: [],
+      albumReady: [],
     })
   }
 
@@ -254,59 +254,59 @@ class MusicInfo extends React.Component {
   /* Change To Tracklist */
   changeToTrackList(name) {
     /*( on render always start at top )*/
-    this.music_containerRef.current.scrollTo(0, 0);
+    this.musicContainerRef.current.scrollTo(0, 0);
     /*(trigger load)*/
     this.triggerLoad();
     /*(disable components)*/
     this.albumDisable();
     /*( fetch )*/
-    var artist_track_list = [];
+    var artistTrackList = [];
     MusicDatabase.searchTitle(name).then(response => {
       response.data.map(value => {
         if (value.preview != "" && value.readable != false) {
-          artist_track_list.push(value)
+          artistTrackList.push(value)
         }
       })
       /*( set State changes )*/
       this.setState({
-        change_component_active: "true",
-        skip_deactivate: "true",
-        audio_skip: this.state.audio_skip_hide,
-        favourites_active: "false",
-        music_list: artist_track_list,
-        artist_track_list: response,
-        track_list_ready: "true",
-        music_info_genre: [],
-        music_info_album: [],
-        music_info_tracklist: "active",
-        render_search: "false",
-        error_message: [],
-        pause_tracklist_listener: "false",
-        playlist_return_data: name,
+        changeComponentActive: "true",
+        skipDeactivate: "true",
+        audioSkip: this.state.audioSkipHide,
+        favouritesActive: "false",
+        musicList: artistTrackList,
+        artistTrackList: response,
+        trackListReady: "true",
+        musicInfoGenre: [],
+        musicInfoAlbum: [],
+        musicInfoTracklist: "active",
+        renderSearch: "false",
+        errorMessage: [],
+        pauseTracklistListener: "false",
+        playlistReturnData: name,
       })
     })
   }
 
   /* Render More Playlist Tracks */
   moreTracksTrackList(name) {
-    var artist_track_list = this.state.artist_track_list.data;
+    var artistTrackList = this.state.artistTrackList.data;
     /*( fetch )*/
-    MusicDatabase.searchMoreTrackList(name, this.state.music_list.length + 25).then(response => {
+    MusicDatabase.searchMoreTrackList(name, this.state.musicList.length + 25).then(response => {
       response.data.map(value => {
         if (value.preview != "") {
-          artist_track_list.push(value)
+          artistTrackList.push(value)
         }
       })
       /*( remove duplicate values)*/
-      var single_values_arr = artist_track_list;
-      const uniqueList = Array.from(new Set(single_values_arr.map(a => a.id))).map(id => {
-        return single_values_arr.find(a => a.id === id)
+      var singleValuesArr = artistTrackList;
+      const uniqueList = Array.from(new Set(singleValuesArr.map(a => a.id))).map(id => {
+        return singleValuesArr.find(a => a.id === id)
       })
-      artist_track_list = uniqueList
+      artistTrackList = uniqueList
 
       /*( apoint new data )*/
       this.setState({
-        music_list: artist_track_list,
+        musicList: artistTrackList,
       })
     })
   }
@@ -314,7 +314,7 @@ class MusicInfo extends React.Component {
   /*disable tracklist render*/
   tracklistDisable() {
     this.setState({
-      track_list_ready: [],
+      trackListReady: [],
     })
   }
 
@@ -324,13 +324,13 @@ class MusicInfo extends React.Component {
   /* Change State To Favourites */
   changeToFavourites() {
     /* (return empty fuction if list is un-populated) */
-    if (this.state.favourites_music_list.length == 0) {
+    if (this.state.favouritesMusicList.length == 0) {
       console.log("empty")
       return
     }
     else {
       /* (start at top) */
-      this.music_containerRef.current.scrollTo(0, 0);
+      this.musicContainerRef.current.scrollTo(0, 0);
       /*(disable components)*/
       this.albumDisable();
       this.tracklistDisable();
@@ -340,15 +340,15 @@ class MusicInfo extends React.Component {
       this.triggerLoad();
       /*( set state changes )*/
       this.setState({
-        music_list: this.state.favourites_music_list,
-        change_component_active: "false",
-        skip_deactivate: "true",
-        favourites_active: "true",
-        error_message: [],
-        audio_skip: this.state.audio_skip_hide,
-        music_info_genre: "active",
-        music_info_album: [],
-        music_info_tracklist: [],
+        musicList: this.state.favouritesMusicList,
+        changeComponentActive: "false",
+        skipDeactivate: "true",
+        favouritesActive: "true",
+        errorMessage: [],
+        audioSkip: this.state.audioSkipHide,
+        musicInfoGenre: "active",
+        musicInfoAlbum: [],
+        musicInfoTracklist: [],
       })
     }
   }
@@ -356,14 +356,14 @@ class MusicInfo extends React.Component {
   /* Adds and Removes Items */
   addFavourites(value) {
     /* (favourite variables) */
-    var check_play = this.state.check_play;
-    var music_list = this.state.music_list;
-    var check_for_empty_list = this.state.music_id;
+    var checkPlay = this.state.checkPlay;
+    var musicList = this.state.musicList;
+    var checkForEmptyList = this.state.musicId;
     var favourites = this.state.favourites;
-    var favourites_music_list = this.state.favourites_music_list;
+    var favouritesMusicList = this.state.favouritesMusicList;
     var condition = [];
     var index = [];
-    var favourites_active = this.state.favourites_active;
+    var favouritesActive = this.state.favouritesActive;
 
     /*( Filtering Out Duplicates )*/
     /*( finding duplicates )*/
@@ -372,46 +372,46 @@ class MusicInfo extends React.Component {
         if (val === value.id) {
           condition = "false"
           index.push(favourites.indexOf(val));
-          if (val === this.state.music_id) {
-            check_play = "empty"
+          if (val === this.state.musicId) {
+            checkPlay = "empty"
           }
         }
       })
     }
     /*( filtering duplicates )*/
     if (condition == "false") {
-      var filtered_array = favourites.filter(function (x) {
+      var filteredArray = favourites.filter(function (x) {
         return x !== value.id;
       });
-      var filter_array_music_list = favourites_music_list.filter(function (x) {
+      var filterArrayMusicList = favouritesMusicList.filter(function (x) {
         return x.id !== value.id;
       });
-      favourites = filtered_array;
-      favourites_music_list = filter_array_music_list;
+      favourites = filteredArray;
+      favouritesMusicList = filterArrayMusicList;
     }
     /*( Add if no duplicates exist )*/
     else if (condition != "false" && favourites.length >= 0) {
       favourites.push(value.id)
-      favourites_music_list.push(value);
+      favouritesMusicList.push(value);
     }
     /*( apoint new data to variable )*/
-    if (favourites_active === "true") {
-      music_list = filter_array_music_list;
+    if (favouritesActive === "true") {
+      musicList = filterArrayMusicList;
     }
     /*( Favourite list is empty function )*/
-    if (this.state.favourites_active === "true" && favourites_music_list.length === 0) {
+    if (this.state.favouritesActive === "true" && favouritesMusicList.length === 0) {
       this.emptyFavourites()
-      this.searchPlayList(this.state.current_genre)
-      check_for_empty_list = [];
-      check_play = "empty";
+      this.searchPlayList(this.state.currentGenre)
+      checkForEmptyList = [];
+      checkPlay = "empty";
     }
     /*( apoint new State data )*/
     this.setState({
       favourites: favourites,
-      favourites_music_list: favourites_music_list,
-      music_id: check_for_empty_list, /* if favourite track plays and list gets emptied will the music_id = [] */
-      music_list: music_list,
-      check_play: check_play
+      favouritesMusicList: favouritesMusicList,
+      musicId: checkForEmptyList, /* if favourite track plays and list gets emptied will the musicId = [] */
+      musicList: musicList,
+      checkPlay: checkPlay
     })
     /*( reset condition )*/
     condition = [];
@@ -420,10 +420,10 @@ class MusicInfo extends React.Component {
   /* Empty Favourites */
   emptyFavourites() {
     this.setState({
-      music_item_play: [],
+      musicItemPlay: [],
       favourites: [],
-      favourites_music_list: [],
-      track_can_play: "false",
+      favouritesMusicList: [],
+      trackCanPlay: "false",
       checkPlay: [],
       checkPause: [],
     })
@@ -432,32 +432,32 @@ class MusicInfo extends React.Component {
 
   /* MUSIC PLAYBACK */
   /*  Play Track Home State */
-  playSong(track, album, title, album_art, id) {
-    console.log(album_art)
-    var check_play = this.state.check_play;
-    var check_pause = this.state.check_pause;
+  playSong(track, album, title, albumArt, id) {
+    console.log(albumArt)
+    var checkPlay = this.state.checkPlay;
+    var checkPause = this.state.checkPause;
     /*( find exisitng playing tracks in the DOM and apply styling )*/
-    if (track === this.state.sync_play_audio) {
-      check_play = "true";
-      check_pause = "false";
+    if (track === this.state.syncPlayAudio) {
+      checkPlay = "true";
+      checkPause = "false";
     }
     else {
-      check_play = "false";
-      check_pause = "true";
+      checkPlay = "false";
+      checkPause = "true";
     }
 
     /*( play song and appoint track data )*/
     this.setState({
-      check_play: check_play,
-      check_pause: check_pause,
-      track_can_play: [],
-      music_item_play: track,
-      music_item_title: title,
-      music_item_album: album,
-      music_item_album_art: album_art,
-      music_id: id,
-      skip_active: "false",
-      change_component_active: "false",
+      checkPlay: checkPlay,
+      checkPause: checkPause,
+      trackCanPlay: [],
+      musicItemPlay: track,
+      musicItemTitle: title,
+      musicItemAlbum: album,
+      musicItemAlbumArt: albumArt,
+      musicId: id,
+      skipActive: "false",
+      changeComponentActive: "false",
     })
     /*( audio player play )*/
     var audioplayer = document.getElementById("audio");
@@ -467,30 +467,30 @@ class MusicInfo extends React.Component {
 
   /*  Play Album Track */
   playAlbumTrack(value, assets) {
-    var check_play = this.state.check_play;
-    var check_pause = this.state.check_pause;
+    var checkPlay = this.state.checkPlay;
+    var checkPause = this.state.checkPause;
     /*( find exisitng playing tracks in the DOM and apply styling )*/
-    if (value.preview === this.state.sync_play_audio) {
-      check_play = "true";
-      check_pause = "false";
+    if (value.preview === this.state.syncPlayAudio) {
+      checkPlay = "true";
+      checkPause = "false";
     }
     /*( find exisitng playing tracks in the DOM and apply styling )*/
-    if (value.preview !== this.state.sync_play_audio) {
-      check_play = "false";
-      check_pause = "true";
+    if (value.preview !== this.state.syncPlayAudio) {
+      checkPlay = "false";
+      checkPause = "true";
     }
     /*( set State changes )*/
     this.setState({
-      check_play: check_play,
-      check_pause: check_pause,
-      music_item_play: value.preview,
-      music_id: value.id,
-      music_item_title: value.title,
-      music_item_album_art: assets.cover_small,
-      music_item_album: value.artist.name,
-      change_component_active: "true",
-      tracklist_track_active: 'false',
-      skip_deactivate: "false",
+      checkPlay: checkPlay,
+      checkPause: checkPause,
+      musicItemPlay: value.preview,
+      musicId: value.id,
+      musicItemTitle: value.title,
+      musicItemAlbumArt: assets.cover_small,
+      musicItemAlbum: value.artist.name,
+      changeComponentActive: "true",
+      tracklistTrackActive: 'false',
+      skipDeactivate: "false",
     })
     /*( audio player play )*/
     var audioplayer = document.getElementById("audio");
@@ -499,30 +499,30 @@ class MusicInfo extends React.Component {
 
   /*  Play TrackList Track */
   playTrackListTrack(value) {
-    var check_play = this.state.check_play;
-    var check_pause = this.state.check_pause;
+    var checkPlay = this.state.checkPlay;
+    var checkPause = this.state.checkPause;
     /*( find exisitng playing tracks in the DOM and apply styling )*/
-    if (value.preview === this.state.sync_play_audio) {
-      check_play = "true";
-      check_pause = "false";
+    if (value.preview === this.state.syncPlayAudio) {
+      checkPlay = "true";
+      checkPause = "false";
     }
     /*( find exisitng playing tracks in the DOM and apply styling )*/
-    if (value.preview !== this.state.sync_play_audio) {
-      check_play = "false";
-      check_pause = "true";
+    if (value.preview !== this.state.syncPlayAudio) {
+      checkPlay = "false";
+      checkPause = "true";
     }
     /*(set state changes)*/
     this.setState({
-      check_play: check_play,
-      check_pause: check_pause,
-      music_item_play: value.preview,
-      music_id: value.id,
-      music_item_title: value.title,
-      music_item_album: value.album.title,
-      music_item_album_art: value.album.cover_small,
-      change_component_active: "true",
-      tracklist_track_active: 'true',
-      skip_deactivate: "false",
+      checkPlay: checkPlay,
+      checkPause: checkPause,
+      musicItemPlay: value.preview,
+      musicId: value.id,
+      musicItemTitle: value.title,
+      musicItemAlbum: value.album.title,
+      musicItemAlbumArt: value.album.cover_small,
+      changeComponentActive: "true",
+      tracklistTrackActive: 'true',
+      skipDeactivate: "false",
     })
     /*( audio player play )*/
     var audioplayer = document.getElementById("audio");
@@ -533,22 +533,22 @@ class MusicInfo extends React.Component {
   onCanPlay() {
     /*( set State changes )*/
     this.setState({
-      track_can_play: "true",
-      check_play: "true",
-      check_pause: "false",
-      sync_play_audio: this.state.music_item_play,
+      trackCanPlay: "true",
+      checkPlay: "true",
+      checkPause: "false",
+      syncPlayAudio: this.state.musicItemPlay,
     })
   }
 
   /* On Play */
   onPlay() {
-    var audio_skip_active = this.state.audio_skip_active.color;
+    var audioSkipActive = this.state.audioSkipActive.color;
     /*( sync playback - DOM styling )*/
-    if (this.state.music_item_play === this.state.sync_play_audio) {
+    if (this.state.musicItemPlay === this.state.syncPlayAudio) {
       this.setState({
-        check_play: "true",
-        check_pause: "false",
-        audio_skip: { color: `${audio_skip_active}` },
+        checkPlay: "true",
+        checkPause: "false",
+        audioSkip: { color: `${audioSkipActive}` },
       })
     }
   }
@@ -560,42 +560,42 @@ class MusicInfo extends React.Component {
     audioplayer.pause();
     /*( set state changes - incl plaback DOM sync)*/
     this.setState({
-      check_play: "false",
-      check_pause: "true",
-      pause_tracklist_listener: "true",
+      checkPlay: "false",
+      checkPause: "true",
+      pauseTracklistListener: "true",
     })
   }
 
   /* Standard On Pause (sync audio player button and active musiclist item button) */
   pauseSync(e) {
     this.setState({
-      check_pause: "true",
-      check_play: "false",
+      checkPause: "true",
+      checkPlay: "false",
     })
   }
 
   /* Skip Forward Audio Player */
   skipForward() {
     /*( check for maximum skips limit )*/
-    var maxSkip = this.state.music_list.length - 1;
-    var check_pause = this.state.check_pause;
-    var check_play = this.state.check_play;
-    var pause_tracklist_listener = this.state.pause_tracklist_listener;
-    if (this.state.music_id === this.state.music_list[maxSkip].id) {
-      check_pause = "false";
-      check_play = "true";
-      pause_tracklist_listener = "false";
+    var maxSkip = this.state.musicList.length - 1;
+    var checkPause = this.state.checkPause;
+    var checkPlay = this.state.checkPlay;
+    var pauseTracklistListener = this.state.pauseTracklistListener;
+    if (this.state.musicId === this.state.musicList[maxSkip].id) {
+      checkPause = "false";
+      checkPlay = "true";
+      pauseTracklistListener = "false";
       return
     }
     else {
       /*( set State - ensure DOM styling changes when track plays)*/
-      check_pause = "true";
-      check_play = "false";
-      skip_active = "false";
-      pause_tracklist_listener = "false";
+      checkPause = "true";
+      checkPlay = "false";
+      skipActive = "false";
+      pauseTracklistListener = "false";
       /* (findng a match) */
-      var musicList = this.state.music_list;
-      var currentItem = this.state.music_id;
+      var musicList = this.state.musicList;
+      var currentItem = this.state.musicId;
       var currentIndex = [];
       musicList.map(value => {
         if (value.id === currentItem) {
@@ -614,76 +614,76 @@ class MusicInfo extends React.Component {
         }
       })
       /* (pass approriate data to variables) */
-      var music_item_album_art = this.state.music_item_album_art;
-      var music_item_play = this.state.music_item_play;
-      var music_item_title = this.state.music_item_title;
-      var music_item_album = this.state.music_item_album;
-      var music_id = this.state.music_id;
-      var skip_active = this.state.skip_active;
+      var musicItemAlbumArt = this.state.musicItemAlbumArt;
+      var musicItemPlay = this.state.musicItemPlay;
+      var musicItemTitle = this.state.musicItemTitle;
+      var musicItemAlbum = this.state.musicItemAlbum;
+      var musicId = this.state.musicId;
+      var skipActive = this.state.skipActive;
       /*(tracklist skip state)*/
-      if (this.state.change_component_active === "true" && this.state.tracklist_track_active === 'true') {
-        music_item_album_art = nextMusicItemInfo[0].album.cover_small;
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].album.title;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+      if (this.state.changeComponentActive === "true" && this.state.tracklistTrackActive === 'true') {
+        musicItemAlbumArt = nextMusicItemInfo[0].album.cover_small;
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemTitle = nextMusicItemInfo[0].title;
+        musicItemAlbum = nextMusicItemInfo[0].album.title;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
 
       /*(album skip state)*/
-      else if (this.state.change_component_active === "true") {
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].artist.name;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+      else if (this.state.changeComponentActive === "true") {
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemTitle = nextMusicItemInfo[0].title;
+        musicItemAlbum = nextMusicItemInfo[0].artist.name;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
 
       /*(defualt state)*/
       else {
-        music_item_album_art = nextMusicItemInfo[0].album.cover_small;
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].album.title;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+        musicItemAlbumArt = nextMusicItemInfo[0].album.cover_small;
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemTitle = nextMusicItemInfo[0].title;
+        musicItemAlbum = nextMusicItemInfo[0].album.title;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
     }
     /* (apoint new data) */
     this.setState({
-      check_pause: check_pause,
-      check_play: check_play,
-      pause_tracklist_listener: pause_tracklist_listener,
-      skip_active: skip_active,
-      music_item_album_art: music_item_album_art,
-      music_item_play: music_item_play,
-      music_item_title: music_item_title,
-      music_item_album: music_item_album,
-      music_id: music_id,
+      checkPause: checkPause,
+      checkPlay: checkPlay,
+      pauseTracklistListener: pauseTracklistListener,
+      skipActive: skipActive,
+      musicItemAlbumArt: musicItemAlbumArt,
+      musicItemPlay: musicItemPlay,
+      musicItemTitle: musicItemTitle,
+      musicItemAlbum: musicItemAlbum,
+      musicId: musicId,
     })
   }
 
   /* Skip Backward Audio Player */
   skipBackward() {
-    var check_pause = this.state.check_pause;
-    var check_play = this.state.check_play;
-    var pause_tracklist_listener = this.state.pause_tracklist_listener;
+    var checkPause = this.state.checkPause;
+    var checkPlay = this.state.checkPlay;
+    var pauseTracklistListener = this.state.pauseTracklistListener;
     /*( check for maximum skips limit )*/
-    if (this.state.music_id === this.state.music_list[0].id) {
-      check_pause = "false";
-      check_play = "true";
-      pause_tracklist_listener = "false";
+    if (this.state.musicId === this.state.musicList[0].id) {
+      checkPause = "false";
+      checkPlay = "true";
+      pauseTracklistListener = "false";
       return
     }
 
     /*( set State - ensure DOM styling changes when track plays)*/
     else {
-      check_pause = "true";
-      check_play = "false";
-      skip_active = "false";
-      pause_tracklist_listener = "false";
-      var musicList = this.state.music_list;
-      var currentItem = this.state.music_id;
+      checkPause = "true";
+      checkPlay = "false";
+      skipActive = "false";
+      pauseTracklistListener = "false";
+      var musicList = this.state.musicList;
+      var currentItem = this.state.musicId;
       var currentIndex = [];
       /* (finding a match) */
       musicList.map(value => {
@@ -703,59 +703,59 @@ class MusicInfo extends React.Component {
         }
       })
       /* (pass approriate data to variables) */
-      var music_item_album_art = this.state.music_item_album_art;
-      var music_item_play = this.state.music_item_play;
-      var music_item_title = this.state.music_item_title;
-      var music_item_album = this.state.music_item_album;
-      var music_id = this.state.music_id;
-      var skip_active = this.state.skip_active;
+      var musicItemalbumArt = this.state.musicItemalbumArt;
+      var musicItemPlay = this.state.musicItemPlay;
+      var musicItemtitle = this.state.musicItemtitle;
+      var musicItemalbum = this.state.musicItemalbum;
+      var musicId = this.state.musicId;
+      var skipActive = this.state.skipActive;
       /*(tracklist skip state)*/
-      if (this.state.change_component_active === "true" && this.state.tracklist_track_active === 'true') {
-        music_item_album_art = nextMusicItemInfo[0].album.cover_small;
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].album.title;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+      if (this.state.changeComponentActive === "true" && this.state.tracklistTrackActive === 'true') {
+        musicItemalbumArt = nextMusicItemInfo[0].album.cover_small;
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemtitle = nextMusicItemInfo[0].title;
+        musicItemalbum = nextMusicItemInfo[0].album.title;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
 
       /*(album skip state)*/
-      else if (this.state.change_component_active === "true") {
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].artist.name;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+      else if (this.state.changeComponentActive === "true") {
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemtitle = nextMusicItemInfo[0].title;
+        musicItemalbum = nextMusicItemInfo[0].artist.name;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
 
       /*(defualt state)*/
       else {
-        music_item_album_art = nextMusicItemInfo[0].album.cover_small;
-        music_item_play = nextMusicItemInfo[0].preview;
-        music_item_title = nextMusicItemInfo[0].title;
-        music_item_album = nextMusicItemInfo[0].album.title;
-        music_id = nextMusicItemInfo[0].id;
-        skip_active = "true";
+        musicItemalbumArt = nextMusicItemInfo[0].album.cover_small;
+        musicItemPlay = nextMusicItemInfo[0].preview;
+        musicItemtitle = nextMusicItemInfo[0].title;
+        musicItemalbum = nextMusicItemInfo[0].album.title;
+        musicId = nextMusicItemInfo[0].id;
+        skipActive = "true";
       }
     }
     /* (apoint new data) */
     this.setState({
-      check_pause: check_pause,
-      check_play: check_play,
-      pause_tracklist_listener: pause_tracklist_listener,
-      skip_active: skip_active,
-      music_item_album_art: music_item_album_art,
-      music_item_play: music_item_play,
-      music_item_title: music_item_title,
-      music_item_album: music_item_album,
-      music_id: music_id,
+      checkPause: checkPause,
+      checkPlay: checkPlay,
+      pauseTracklistListener: pauseTracklistListener,
+      skipActive: skipActive,
+      musicItemalbumArt: musicItemalbumArt,
+      musicItemPlay: musicItemPlay,
+      musicItemtitle: musicItemtitle,
+      musicItemalbum: musicItemalbum,
+      musicId: musicId,
     })
   }
 
   /* Reset Play/Pause */
   reset() {
     this.setState({
-      skip_active: "false"
+      skipActive: "false"
     })
   }
 
@@ -763,23 +763,23 @@ class MusicInfo extends React.Component {
   /* Trigger Loading Animation */
   triggerLoad() {
     this.setState({
-      music_list: []
+      musicList: []
     })
   }
 
   /* Errors */
   onError() {
     this.setState({
-      track_can_play: "false"
+      trackCanPlay: "false"
     })
   }
 
   /* Error Mesage */
   errorMessage() {
     this.setState({
-      music_info_genre: [],
-      music_info_album: [],
-      music_info_tracklist: [],
+      musicInfoGenre: [],
+      musicInfoAlbum: [],
+      musicInfoTracklist: [],
     })
   }
 
@@ -801,48 +801,48 @@ class MusicInfo extends React.Component {
   }
 
   setBrowserAudioPlayerStyle() {
-    var audio_player = [];
-    var audio_skip = [];
-    var audio_skip_hide = [];
-    var audio_player_titles_first = [];
-    var audio_player_titles_second = [];
+    var audioPlayer = [];
+    var audioSkip = [];
+    var audioSkipHide = [];
+    var audioPlayerTitlesFirst = [];
+    var audioPlayerTitlesSecond = [];
     if (this.state.browser == 'Chrome' || 'Opera') {
-      audio_player.push("hsl(200, 12%, 95%)");
-      audio_skip.push("grey");
-      audio_skip_hide.push("lightgrey")
-      audio_player_titles_first.push("coral");
-      audio_player_titles_second.push("grey");
+      audioPlayer.push("hsl(200, 12%, 95%)");
+      audioSkip.push("grey");
+      audioSkipHide.push("lightgrey")
+      audioPlayerTitlesFirst.push("coral");
+      audioPlayerTitlesSecond.push("grey");
     }
     if (this.state.browser == 'Firefox') {
-      audio_player.push("hsl(0, 0%, 13%)");
-      audio_skip.push("white");
-      audio_skip_hide.push("lightgrey")
-      audio_player_titles_first.push("lightgrey");
-      audio_player_titles_second.push("white");
+      audioPlayer.push("hsl(0, 0%, 13%)");
+      audioSkip.push("white");
+      audioSkipHide.push("lightgrey")
+      audioPlayerTitlesFirst.push("lightgrey");
+      audioPlayerTitlesSecond.push("white");
     }
     if (this.state.browser == 'Safari') {
-      audio_player.push("hsl(180, 1%, 24%)");
-      audio_skip.push("white");
-      audio_skip_hide.push("lightgrey")
-      audio_player_titles_first.push("lightgrey");
-      audio_player_titles_second.push("white");
+      audioPlayer.push("hsl(180, 1%, 24%)");
+      audioSkip.push("white");
+      audioSkipHide.push("lightgrey")
+      audioPlayerTitlesFirst.push("lightgrey");
+      audioPlayerTitlesSecond.push("white");
     }
     if (this.state.browser == 'MSIE') {
-      audio_player.push("black");
-      audio_skip.push("white");
-      audio_skip_hide.push("lightgrey")
-      audio_player_titles_first.push("lightgrey");
-      audio_player_titles_second.push("white");
+      audioPlayer.push("black");
+      audioSkip.push("white");
+      audioSkipHide.push("lightgrey")
+      audioPlayerTitlesFirst.push("lightgrey");
+      audioPlayerTitlesSecond.push("white");
     }
     this.setState({
-      audioplayer_style: {
-        audio_player: { background: `${audio_player}` },
-        audio_player_titles_first: { color: `${audio_player_titles_first}` },
-        audio_player_titles_second: { color: `${audio_player_titles_second}` },
+      audioplayerStyle: {
+        audioPlayer: { background: `${audioPlayer}` },
+        audioPlayerTitlesFirst: { color: `${audioPlayerTitlesFirst}` },
+        audioPlayerTitlesSecond: { color: `${audioPlayerTitlesSecond}` },
       },
-      audio_skip_hide: { color: `${audio_skip_hide}`, pointerEvents: "none" },
-      audio_skip_active: { color: `${audio_skip}` },
-      audio_skip: { color: `${audio_skip_hide}`, pointerEvents: "none" },
+      audioSkipHide: { color: `${audioSkipHide}`, pointerEvents: "none" },
+      audioSkipActive: { color: `${audioSkip}` },
+      audioSkip: { color: `${audioSkipHide}`, pointerEvents: "none" },
     })
   }
 
@@ -853,61 +853,61 @@ class MusicInfo extends React.Component {
   render() {
 
     /* search input error message */
-    var error_message = [];
-    if (this.state.error_message === "nothing found") {
-      error_message.push(<p className="error_message">NOTHING FOUND...</p>)
+    var errorMessage = [];
+    if (this.state.errorMessage === "nothing found") {
+      errorMessage.push(<p className="errorMessage">NOTHING FOUND...</p>)
     }
     else {
-      error_message = []
+      errorMessage = []
     }
 
     /* PUSH AVAILABLE DATA INTO DOM */
-    var genre_items = [];
-    if (typeof this.state.music_list != 'undefined' && this.state.change_component_active != "true") {
-      if (this.state.music_list.length > 0) {
-        this.state.music_list.map(value => {
+    var genreItems = [];
+    if (typeof this.state.musicList != 'undefined' && this.state.changeComponentActive != "true") {
+      if (this.state.musicList.length > 0) {
+        this.state.musicList.map(value => {
 
           /* check for favourites and apply styling */
-          var favourite_styling = [];
+          var favouriteStyling = [];
           this.state.favourites.map(val => {
             if (val == value.id) {
-              favourite_styling = "true"
+              favouriteStyling = "true"
             }
           })
 
           /* create new list */
           if (value.preview !== "" && value.readable !== false) {
-            genre_items.push(< MusicItem
+            genreItems.push(< MusicItem
               /*PlayBack*/
-              check_play={this.state.check_play}
-              check_pause={this.state.check_pause}
+              checkPlay={this.state.checkPlay}
+              checkPause={this.state.checkPause}
               /*Functions*/
               pauseSong={(e) => this.pauseSong(e)}
-              playSong={(track, album, title, album_art, id) => this.playSong(track, album, title, album_art, id)}
+              playSong={(track, album, title, albumArt, id) => this.playSong(track, album, title, albumArt, id)}
               changeToAlbum={(id) => this.changeToAlbum(id)}
               addFavourites={(val) => this.addFavourites(val)}
               /*Info*/
               info={value}
               key={value.id}
               selector={value.id}
-              music_id={this.state.music_id}
-              skip_active={this.state.skip_active}
-              favourite_styling={favourite_styling}
+              musicId={this.state.musicId}
+              skipActive={this.state.skipActive}
+              favouriteStyling={favouriteStyling}
             />)
           }
-          favourite_styling = [];
+          favouriteStyling = [];
         })
       }
     }
 
 
     /* push available album information into DOM - create new list  */
-    var album_portal = [];
-    if (this.state.album_ready === 'true') {
-      album_portal.push(< AlbumPortal
+    var albumPortal = [];
+    if (this.state.albumReady === 'true') {
+      albumPortal.push(< AlbumPortal
         /*PlayBack*/
-        check_pause={this.state.check_pause}
-        check_play={this.state.check_play}
+        checkPause={this.state.checkPause}
+        checkPlay={this.state.checkPlay}
         /*Functions*/
         playTrack={(value, assets) => this.playAlbumTrack(value, assets)}
         changeToTrackList={(e) => this.changeToTrackList(e)}
@@ -915,12 +915,12 @@ class MusicInfo extends React.Component {
         resetState={(e) => this.resetState(e)}
         pauseTrack={(e) => this.pauseSong(e)}
         /*Info*/
-        album_ready={this.state.album_ready}
-        key={this.state.current_album_info.id}
-        album_info={this.state.current_album_info}
-        music_id={this.state.music_id}
-        favourite_log={this.state.favourites}
-        current_music_item_title={this.state.music_item_title}
+        albumReady={this.state.albumReady}
+        key={this.state.currentAlbumInfo.id}
+        albumInfo={this.state.currentAlbumInfo}
+        musicId={this.state.musicId}
+        favouriteLog={this.state.favourites}
+        currentMusicItemTitle={this.state.musicItemtitle}
 
       />)
     }
@@ -928,26 +928,26 @@ class MusicInfo extends React.Component {
 
     /* push available tracklist information into DOM - create new list  */
     var track_list = [];
-    if (this.state.track_list_ready === "true") {
+    if (this.state.trackListReady === "true") {
       track_list.push(< TrackListPortal
         /*PlayBack*/
-        check_pause={this.state.check_pause}
-        check_play={this.state.check_play}
+        checkPause={this.state.checkPause}
+        checkPlay={this.state.checkPlay}
         /*Functions*/
         pauseTrack={(e) => this.pauseSong(e)}
-        playTrackListTrack={(value, album_art, artist, album, title) => this.playTrackListTrack(value, album_art, artist, album, title)}
+        playTrackListTrack={(value, albumArt, artist, album, title) => this.playTrackListTrack(value, albumArt, artist, album, title)}
         moreTracks={(e) => this.moreTracksTrackList(e)}
         addFavourite={(val) => this.addFavourites(val)}
         changeToAlbum={(id, back_option) => this.changeToAlbum(id, back_option)}
         /*Info*/
-        key={this.state.artist_id} 
-        track_list_info={this.state.artist_track_list}   
-        track_list_artist={this.state.music_list}
-        music_id={this.state.music_id}
-        track_list_ready={this.state.track_list_ready}  
-        favourite_log={this.state.favourites}  
-        album_change_back={this.state.current_album_info}
-        current_music_item_title={this.state.music_item_title}
+        key={this.state.artistId} 
+        trackListInfo={this.state.artistTrackList}   
+        trackListArtist={this.state.musicList}
+        musicId={this.state.musicId}
+        trackListReady={this.state.trackListReady}  
+        favouriteLog={this.state.favourites}  
+        albumChangeBack={this.state.currentAlbumInfo}
+        currentMusicItemTitle={this.state.musicItemtitle}
       />)
     }
 
@@ -990,10 +990,10 @@ class MusicInfo extends React.Component {
 
 
               {/* information display area */}
-              <div ref={this.music_containerRef} className='music_info_container'>
+              <div ref={this.musicContainerRef} className='music_info_container'>
 
                 {/* loader */}
-                <div className={this.state.music_list.length > 0 || this.state.error_message === "nothing found" ? "loader disable" : "loader"}>
+                <div className={this.state.musicList.length > 0 || this.state.errorMessage === "nothing found" ? "loader disable" : "loader"}>
                   <div className="example">
                     <div className="sk-wave">
                       <div className="sk-wave-rect"></div>
@@ -1005,39 +1005,39 @@ class MusicInfo extends React.Component {
                   </div>
                 </div>
                 {/* error  */}
-                {error_message}
+                {errorMessage}
 
 
                 {/* render area for genre items */}
-                <div className={this.state.music_info_genre == "active" ? "music_info_genre" : "music_info_genre disable"}>
-                  {genre_items}
-                  <div className={this.state.render_search === "true" && this.state.favourites_active != "true" ? "spacer_genre active" : "spacer_genre"}>
+                <div className={this.state.musicInfoGenre == "active" ? "music_info_genre" : "music_info_genre disable"}>
+                  {genreItems}
+                  <div className={this.state.renderSearch === "true" && this.state.favouritesActive != "true" ? "spacer_genre active" : "spacer_genre"}>
                     <p onClick={(e) => this.renderMoreSearch(e)}>+</p>
                   </div>
                 </div>
 
                 {/* render area for album items  */}
-                <div className={this.state.music_info_album == "active" ? "music_info_album enable" : "music_info_album"}>
-                  {album_portal}
+                <div className={this.state.musicInfoAlbum == "active" ? "music_info_album enable" : "music_info_album"}>
+                  {albumPortal}
                 </div>
 
                 {/* render area for tracklist items  */}
-                <div className={this.state.music_info_tracklist == "active" ? "music_info_tracklist enable" : "music_info_tracklist"}>
+                <div className={this.state.musicInfoTracklist == "active" ? "music_info_tracklist enable" : "music_info_tracklist"}>
                   {track_list}
                 </div>
 
               </div>
 
               {/* audio player */}
-              <div className={typeof this.state.check_play != "undefined" && this.state.check_play != "empty" ? "audio_player active" : "audio_player"} style={this.state.audioplayer_style.audio_player}>
+              <div className={typeof this.state.checkPlay != "undefined" && this.state.checkPlay != "empty" ? "audio_player active" : "audio_player"} style={this.state.audioplayerStyle.audioPlayer}>
                 <div className="audio_info">
-                  <img src={`${this.state.music_item_album_art}`}></img>
+                  <img src={`${this.state.musicItemAlbumArt}`}></img>
                   <div className="audio_player_titles" >
-                    <p className="first" style={this.state.audioplayer_style.audio_player_titles_first}>{this.state.music_item_title}</p>
-                    <p className="second" style={this.state.audioplayer_style.audio_player_titles_second} >{this.state.music_item_album}</p>
+                    <p className="first" style={this.state.audioplayerStyle.audioPlayerTitlesFirst}>{this.state.musicItemTitle}</p>
+                    <p className="second" style={this.state.audioplayerStyle.audioPlayerTitlesSecond} >{this.state.musicItemAlbum}</p>
                   </div>
                 </div>
-                <div className="audio_skip" style={this.state.audio_skip}><i onClick={(e) => this.skipBackward(e)} className="fa fa-backward"></i>
+                <div className="audio_skip" style={this.state.audioSkip}><i onClick={(e) => this.skipBackward(e)} className="fa fa-backward"></i>
                   <i onClick={(e) => this.skipForward(e)} className="fa fa-forward"></i></div>
 
                 <audio
@@ -1050,7 +1050,7 @@ class MusicInfo extends React.Component {
                   controls
                   autoPlay
                   loop
-                  src={this.state.music_item_play} >
+                  src={this.state.musicItemPlay} >
                 </audio>
 
               </div>
@@ -1067,7 +1067,7 @@ class MusicInfo extends React.Component {
     /* Set oppropriate audio styling */
     this.setBrowserAudioPlayerStyle();
     /* default data for home screen */
-    if (this.state.music_list.length < 1) {
+    if (this.state.musicList.length < 1) {
       this.searchPlayList(3220851222)
     }
   }

@@ -34,8 +34,8 @@ class AlbumItem extends React.Component {
     /* add title and album_art to object */
     var obj = this.props.value;
     obj.album = { cover_big: {}, title: {} };
-    obj.album.cover_big = this.props.album_info.cover_big;
-    obj.album.title = this.props.album_info.title;
+    obj.album.cover_big = this.props.albumInfo.cover_big;
+    obj.album.title = this.props.albumInfo.title;
     this.props.addFavourite(obj)
   }
 
@@ -47,7 +47,7 @@ class AlbumItem extends React.Component {
     /* Return */
     return (
 
-      <div className={this.props.music_id == this.props.value.id ? "track_item_album active" : "track_item_album"}>
+      <div className={this.props.musicId == this.props.value.id ? "track_item_album active" : "track_item_album"}>
         {/*(track info)*/}
         <div className="track_art_album" style={{ background: `url(${this.props.assets.cover_medium})`, backgroundSize: "cover" }}></div>
         <div className="track_info">
@@ -55,9 +55,9 @@ class AlbumItem extends React.Component {
             <h5 onClick={(e) => this.changeToTrackList(e)} id="artist">{this.props.assets.artist.name}</h5>
             <div>
               <h4>{this.props.value.title}</h4>
-              <i onClick={(e) => this.addFavourite(this.props.value)} className={this.props.favourite_styling == true ? `${this.props.value.id} fa fa-heart light_up` : `${this.props.value.id} fa fa-heart`}></i>
+              <i onClick={(e) => this.addFavourite(this.props.value)} className={this.props.favouriteStyling == true ? `${this.props.value.id} fa fa-heart light_up` : `${this.props.value.id} fa fa-heart`}></i>
               <span className="sec_symbol_attr">&#x27F3; </span>
-              <span className="sec_attr">{this.props.time_info.get_minutes}:{this.props.time_info.get_seconds} </span>
+              <span className="sec_attr">{this.props.timeInfo.getMinutes}:{this.props.timeInfo.getSeconds} </span>
             </div>
           </div>
 
@@ -65,11 +65,11 @@ class AlbumItem extends React.Component {
           <div id={this.props.value.id} className="play_pause_album">
             <i
               onClick={(e) => this.playTrack(e)}
-              className={this.props.check_play == "true" && this.props.music_id == this.props.value.id ? "fa fa-play play_album disable" : "fa fa-play play_album"}>
+              className={this.props.checkPlay == "true" && this.props.musicId == this.props.value.id ? "fa fa-play play_album disable" : "fa fa-play play_album"}>
             </i>
             <i
               onClick={(e) => this.pauseTrack(e)}
-              className={this.props.check_pause == "false" && this.props.music_id == this.props.value.id ? "fa fa-pause pause_album active" : "fa fa-pause pause_album"}>
+              className={this.props.checkPause == "false" && this.props.musicId == this.props.value.id ? "fa fa-pause pause_album active" : "fa fa-pause pause_album"}>
             </i>
           </div>
         </div>

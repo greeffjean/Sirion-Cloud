@@ -5,7 +5,7 @@ import TrackListItem from './TrackListItem'
 
 
 
-class TrackListPortal extends React.Component {
+class Track_listPortal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -15,7 +15,7 @@ class TrackListPortal extends React.Component {
   /*PLAYBACK*/
   /* Play Track */
   playTrack(value) {
-    this.props.playTrackListTrack(value)
+    this.props.playTrack_listTrack(value)
     this.setState({
       pause: "false"
     })
@@ -43,48 +43,48 @@ class TrackListPortal extends React.Component {
 
   /* Return to Previous Album */
   changeBackToAlbum() {
-    this.props.changeToAlbum(this.props.album_change_back.id)
+    this.props.changeToAlbum(this.props.albumChangeBack.id)
   }
 
   /* Change To Artist Portal */
   moreTracks() {
-    this.props.moreTracks(this.props.track_list_artist[0].artist.name)
+    this.props.moreTracks(this.props.trackListArtist[0].artist.name)
   }
 
 
   /* Render */
   render() {
-    if (this.props.track_list_ready === "true") {
-      /* Render TrackList List Items */
-      if (this.props.track_list_ready === "true") {
-        var track_list = [];
-        this.props.track_list_artist.map(value => {
+    if (this.props.trackListReady === "true") {
+      /* Render Track_list List Items */
+      if (this.props.trackListReady === "true") {
+        var trackList = [];
+        this.props.trackListArtist.map(value => {
 
           /* Process data and output correct styling and format of time and favourite icon */
-          var favourite_styling = [];
-          var get_minutes = Math.floor(value.duration / 60);
-          var sum = get_minutes * 60;
-          var get_seconds = value.duration - sum;
-          var time_info = {
-            get_minutes: get_minutes,
+          var favouriteStyling = [];
+          var getMinutes = Math.floor(value.duration / 60);
+          var sum = getMinutes * 60;
+          var getSeconds = value.duration - sum;
+          var timeInfo = {
+            getMinutes: getMinutes,
             sum: sum,
-            get_seconds: get_seconds,
+            getSeconds: getSeconds,
           }
-          if (time_info.get_seconds.toString().length === 1) {
-            time_info.get_seconds = "0" + time_info.get_seconds.toString();
+          if (timeInfo.getSeconds.toString().length === 1) {
+            timeInfo.getSeconds = "0" + timeInfo.getSeconds.toString();
           }
           /* Searching For Selected Favourites - applying correct styling */
-          this.props.favourite_log.map(val => {
+          this.props.favouriteLog.map(val => {
             if (val == value.id) {
-              favourite_styling = "true"
+              favouriteStyling = "true"
             }
           })
 
           /* Adding New List Items */
-          track_list.push(<TrackListItem
+          trackList.push(< TrackListItem
             /*PlayBack*/
-            check_play={this.props.check_play}
-            check_pause={this.props.check_pause}
+            checkPlay={this.props.checkPlay}
+            checkPause={this.props.checkPause}
             /*Functions*/
             addFavourite={(value) => this.addFavourite(value)}
             changeToAlbum={(id) => this.changeToAlbum(id)}
@@ -93,21 +93,21 @@ class TrackListPortal extends React.Component {
             /*Info*/
             key={value.id}
             value={value}
-            time_info={time_info}
-            favourite_styling={favourite_styling}
-            album_info={this.props.album_Info}
-            music_id={this.props.music_id}
+            timeInfo={timeInfo}
+            favouriteStyling={favouriteStyling}
+            albumInfo={this.props.albumInfo}
+            musicId={this.props.musicId}
           />)
         })
       }
 
       /* Render Default Right Track Info */
-      var current_track = [];
+      var currentTrack = [];
 
       /* Render Right Track Info Data */
-      this.props.track_list_artist.map(value => {
-        if (value.id === this.props.music_id) {
-          current_track.push(value)
+      this.props.trackListArtist.map(value => {
+        if (value.id === this.props.musicId) {
+          currentTrack.push(value)
         }
       })
     }
@@ -122,20 +122,20 @@ class TrackListPortal extends React.Component {
           {/* Track List Left Information */}
           <div className="track_list_inner_left_heading">
             <div className="track_list_inner_left_heading_left"> <div className="track_list_art"
-              style={{ background: `url("${this.props.track_list_artist[0].artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }} >
+              style={{ background: `url("${this.props.trackListArtist[0].artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }} >
             </div>
             </div>
             <div className="track_list_inner_left_heading_right">
-              <div className="track_list_inner_left_heading_right_top"> <h2>{this.props.track_list_artist[0].artist.name}</h2> <h1>Track List</h1></div>
+              <div className="track_list_inner_left_heading_right_top"> <h2>{this.props.trackListArtist[0].artist.name}</h2> <h1>Track List</h1></div>
               <div className="track_list_inner_left_heading_right_bottom">
                 <div className=" track_list_inner_left_heading_right_bottom_top">
-                  <i className="fa fa-music"> {this.props.track_list_info.total}</i>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.deezer.com/en/artist/${this.props.track_list_artist[0].artist.id}`}>Facebook</a>
-                  <a href={`https://twitter.com/home?status=https://www.deezer.com/en/artist/${this.props.track_list_artist[0].artist.id} `}>Twitter</a>
-                  <a href={`https://pinterest.com/pin/create/button/?url=https://www.deezer.com/en/artist/${this.props.track_list_artist[0].artist.id}&media=&description=`}>Pintrest</a>
+                  <i className="fa fa-music"> {this.props.trackListInfo.total}</i>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id}`}>Facebook</a>
+                  <a href={`https://twitter.com/home?status=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id} `}>Twitter</a>
+                  <a href={`https://pinterest.com/pin/create/button/?url=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id}&media=&description=`}>Pintrest</a>
                 </div>
                 <div onClick={(e) => this.changeBackToAlbum(e)} className=" track_list_inner_left_heading_right_bottom_bottom bottom_special_align">
-                  <p>Return to {this.props.album_change_back.title}</p>
+                  <p>Return to {this.props.albumChangeBack.title}</p>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@ class TrackListPortal extends React.Component {
           {/* Track List Track List */}
           <div className="track_list_inner_left_list_container">
             <div className="track_list_inner_left_list">
-              {track_list}
+              {trackList}
             </div>
 
             <div className="spacer">
@@ -157,14 +157,14 @@ class TrackListPortal extends React.Component {
         {/* Track List Right Inforamtion */}
         <div className="track_list_inner_right">
           <div className="track_list_inner_right_information">
-            <div className="track_list_art_right"> <img src={current_track.length > 0 ? `${current_track[0].album.cover_big}` : `${this.props.track_list_artist[0].artist.picture_big}`}></img> </div>;
+            <div className="track_list_art_right"> <img src={currentTrack.length > 0 ? `${currentTrack[0].album.cover_big}` : `${this.props.trackListArtist[0].artist.picture_big}`}></img> </div>;
             <div className="overlap_info">
-              <h5 className="title">{current_track.length > 0 ? current_track[0].title : "--"}</h5>
-              <h4>{current_track.length > 0 ? current_track[0].album.title : "--"}</h4>
+              <h5 className="title">{currentTrack.length > 0 ? currentTrack[0].title : "--"}</h5>
+              <h4>{currentTrack.length > 0 ? currentTrack[0].album.title : "--"}</h4>
               <div className="playback_status">
                 <h5 id="title_right">
                   {this.state.pause != "true" ? "NOW PLAYING  " : "PAUSED  "}
-                  {typeof this.props.current_music_item_title != "undefined" ? `${this.props.current_music_item_title}` : `--`}
+                  {typeof this.props.currentMusicItemTitle != "undefined" ? `${this.props.currentMusicItemTitle}` : `--`}
                 </h5>
               </div>
 
@@ -178,7 +178,7 @@ class TrackListPortal extends React.Component {
 }
 
 
-export default TrackListPortal;
+export default Track_listPortal;
 
 
 
