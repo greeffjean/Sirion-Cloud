@@ -31,8 +31,8 @@ searchPlayList(id){
 },
 
 /* Search Album */
-searchAlbum(album_id){
-    return fetch(`https://deezerdevs-deezer.p.rapidapi.com/album/${album_id}`, {
+searchAlbum(albumId){
+    return fetch(`https://deezerdevs-deezer.p.rapidapi.com/album/${albumId}`, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
