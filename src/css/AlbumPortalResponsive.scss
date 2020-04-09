@@ -1,0 +1,23 @@
+
+/* Height 950px*/
+@media only screen and (max-height: 950px){
+    .album_inner_left_heading_left{
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  /* Height 840px*/
+  @media only screen and (max-height: 840px){
+    .album_inner_right {
+      height: 45%;
+    }
+  }
+
+  /* Height 730px*/
+  @media only screen and (max-height: 730px){
+    .album_inner_right {
+      height: 60%;
+    }
+  }
+

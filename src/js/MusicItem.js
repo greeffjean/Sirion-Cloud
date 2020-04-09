@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/MusicItem.css';
+import '../css/MusicItem.scss';
 
 
 

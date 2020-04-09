@@ -1,9 +1,13 @@
 import React from 'react';
-import '../css/MusicInfo.css';
+/* Stylesheets */
+import '../css/MusicInfo.scss';
+import '../css/MusicInfoResponsive.scss';
+/* Components */
 import MusicItem from './MusicItem';
 import MusicDatabase from './MuiscDatabase';
 import AlbumPortal from './AlbumPortal';
 import TrackListPortal from './TrackListPortal';
+/* Misc */
 import logo from '../media/logo.png';
 
 
@@ -920,7 +924,7 @@ class MusicInfo extends React.Component {
         albumInfo={this.state.currentAlbumInfo}
         musicId={this.state.musicId}
         favouriteLog={this.state.favourites}
-        currentMusicItemTitle={this.state.musicItemtitle}
+        currentMusicItemTitle={this.state.musicItemTitle}
 
       />)
     }
@@ -947,7 +951,7 @@ class MusicInfo extends React.Component {
         trackListReady={this.state.trackListReady}  
         favouriteLog={this.state.favourites}  
         albumChangeBack={this.state.currentAlbumInfo}
-        currentMusicItemTitle={this.state.musicItemtitle}
+        currentMusicItemTitle={this.state.musicItemTitle}
       />)
     }
 

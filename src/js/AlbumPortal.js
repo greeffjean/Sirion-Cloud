@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/AlbumPortal.css';
+import '../css/AlbumPortal.scss';
 import AlbumItem from './AlbumItem'
 
 
@@ -8,7 +8,9 @@ import AlbumItem from './AlbumItem'
 class AlbumPortal extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      pause: this.props.checkPause
+    }
   }
 
   /*PLAYBACK*/
@@ -110,7 +112,10 @@ class AlbumPortal extends React.Component {
 
           {/* Album Top Info Bar */}
           <div className="album_inner_left_heading">
-            <div className="album_inner_left_heading_left"> <div className="album_art" style={{ background: `url("${assets.artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }}></div> </div>
+            <div className="album_inner_left_heading_left"> <div className="album_art" 
+            style={{ background: `url("${assets.artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }}>
+              </div> 
+              </div>
             <div className="album_inner_left_heading_right">
               <div className="album_inner_left_heading_right_top"> <h2 onClick={(e) => this.changeToTrackList(e)} id="artist">{assets.artist.name}</h2>
                 <h1>{assets.title}</h1>
@@ -147,7 +152,7 @@ class AlbumPortal extends React.Component {
               <h4>{this.props.albumInfo.title}</h4>
               <div className="playback_status" >
                 <h5 id="title_right">
-                  {this.state.pause != "true" ? "NOW PLAYING  " : "PAUSED  "}
+                  {this.state.pause != "true"  ? "NOW PLAYING  " : "PAUSED  "}
                   {typeof this.props.currentMusicItemTitle != 'undefined' && this.props.albumReady == "true" ? `${this.props.currentMusicItemTitle}` : "--"}
                 </h5>
               </div>

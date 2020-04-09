@@ -1,0 +1,208 @@
+.track_item_track_list {
+    background: white;
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid hsl(0, 0%, 87%);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    &.active {
+      background: coral;
+    }
+
+    .track_art {
+      width: 70px;
+      height: 70px;
+      margin-left: 0.7rem;
+    }
+    
+  
+    .track_info_track_list {
+      width: 89%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      padding-left: 0.6rem;
+
+      .track_info_info {
+        width: 80%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+
+        h5 {
+          margin: 0;
+          font-weight: 300;
+          color: darkgrey;
+          padding: 0.4rem 0.4rem 0 0.4rem;
+          white-space: nowrap;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+        }
+
+        div {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+
+          h4 {
+            padding-top: 0.3rem;
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
+            margin: 0;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            color: hsl(0, 0%, 27%);
+          }
+
+          .fa-heart {
+            font-size: 0.8rem;
+            margin: 0;
+            font-weight: 300;
+            padding: 0.4rem 0 0 0.5rem;
+            color: hsl(207, 47%, 70%);
+
+            &:hover {
+                cursor: pointer;
+                color: hsl(12, 79%, 63%);
+            }
+
+            &.light_up {
+                color: hsl(12, 79%, 63%);
+            }
+        }
+
+          .sec_symbol_attr {
+            margin: 0;
+            font-weight: 300;
+            padding: 0.3rem 0 0 1rem;
+            font-size: 1rem;
+            color: hsl(207, 47%, 70%);
+          }
+          
+          .sec_attr {
+            font-size: 0.8rem;
+            margin: 0;
+            font-weight: 300;
+            padding: 0.35rem 0 0 0.15rem;
+            color: hsl(207, 47%, 70%);
+          }
+        }
+        
+      }
+
+      .play_pause_track_list {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        color: hsl(207, 47%, 70%);
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        font-size: 1.6rem;
+        width: 20%;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .play_track_list {
+          display: block;
+
+          &.disable {
+            display: none;
+          }
+        }
+
+        .pause_track_list {
+          display: none;
+
+          &.active {
+            display: block;
+          }
+        }
+         
+      }
+    }
+
+  }
+  
+  
+   /* Complex Styling */
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list h5 {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list h4 {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list .sec_attr {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list .sec_symbol_attr {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list .play_pause_track_list {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list:hover {
+    background: hsl(0, 0%, 27%);
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list .fa-heart {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list.active .track_info_track_list .fa-heart.light_up {
+    color: hsl(61, 100%, 81%);
+  }
+  
+  .track_list_inner_left_list .track_item_track_list:hover .track_info_track_list h5 {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list:hover .track_info_track_list h4 {
+    color: white;
+  }
+  
+  .track_list_inner_left_list .track_item_track_list:hover .track_info_track_list .sec_attr {
+    color: white;
+  }
+  
+
+  
+
+  
+
+  
+
+  
+  
+  

@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-
+import '../css/AlbumItem.scss'
 
 
 class AlbumItem extends React.Component {
@@ -55,7 +53,9 @@ class AlbumItem extends React.Component {
             <h5 onClick={(e) => this.changeToTrackList(e)} id="artist">{this.props.assets.artist.name}</h5>
             <div>
               <h4>{this.props.value.title}</h4>
-              <i onClick={(e) => this.addFavourite(this.props.value)} className={this.props.favouriteStyling == true ? `${this.props.value.id} fa fa-heart light_up` : `${this.props.value.id} fa fa-heart`}></i>
+              <i onClick={(e) => this.addFavourite(this.props.value)} 
+              className={this.props.favouriteStyling == true ? `${this.props.value.id} fa fa-heart light_up` : `${this.props.value.id} fa fa-heart`}>
+              </i>
               <span className="sec_symbol_attr">&#x27F3; </span>
               <span className="sec_attr">{this.props.timeInfo.getMinutes}:{this.props.timeInfo.getSeconds} </span>
             </div>

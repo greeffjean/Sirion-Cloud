@@ -1,7 +1,6 @@
 import React from 'react';
 import MusicInfo from './MusicInfo';
-import MusicDatabase from './MuiscDatabase';
-import '../css/App.css';
+import '../css/App.scss';
 
 
 

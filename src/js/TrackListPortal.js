@@ -1,6 +1,7 @@
 import React from 'react';
-import '../css/TrackListPortal.css';
-import TrackListItem from './TrackListItem'
+import '../css/TrackListPortal.scss';
+import '../css/TrackListPortalResponsive.scss'
+import TrackListItem from './TrackListItem';
 
 
 
@@ -8,14 +9,16 @@ import TrackListItem from './TrackListItem'
 class Track_listPortal extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      pause: this.props.checkPause
+    }
   }
 
 
   /*PLAYBACK*/
   /* Play Track */
   playTrack(value) {
-    this.props.playTrack_listTrack(value)
+    this.props.playTrackListTrack(value)
     this.setState({
       pause: "false"
     })
@@ -121,7 +124,8 @@ class Track_listPortal extends React.Component {
         <div className="track_list_inner_left">
           {/* Track List Left Information */}
           <div className="track_list_inner_left_heading">
-            <div className="track_list_inner_left_heading_left"> <div className="track_list_art"
+            <div className="track_list_inner_left_heading_left">
+               <div className="track_list_art"
               style={{ background: `url("${this.props.trackListArtist[0].artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }} >
             </div>
             </div>
@@ -157,7 +161,9 @@ class Track_listPortal extends React.Component {
         {/* Track List Right Inforamtion */}
         <div className="track_list_inner_right">
           <div className="track_list_inner_right_information">
-            <div className="track_list_art_right"> <img src={currentTrack.length > 0 ? `${currentTrack[0].album.cover_big}` : `${this.props.trackListArtist[0].artist.picture_big}`}></img> </div>;
+            <div className="track_list_art_right">
+               <img src={currentTrack.length > 0 ? `${currentTrack[0].album.cover_big}` : `${this.props.trackListArtist[0].artist.picture_big}`}></img> 
+               </div>;
             <div className="overlap_info">
               <h5 className="title">{currentTrack.length > 0 ? currentTrack[0].title : "--"}</h5>
               <h4>{currentTrack.length > 0 ? currentTrack[0].album.title : "--"}</h4>

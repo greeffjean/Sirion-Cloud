@@ -1,0 +1,214 @@
+
+/* Width 1400px */
+@media only screen and (max-width: 1400px) {
+
+    /* Media Queries Top Bar */
+    .top_wrapper_param {
+        width: 70%;
+    }
+
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 70%;
+    }
+
+    /* Music Info Track List, ALbum, Genre Media Queries */
+    .music_info_genre {
+        width: 70.5%;
+    }
+
+    .music_info_album {
+        width: 70.5%;
+    }
+
+    .music_info_tracklist {
+        width: 70.5%;
+    }
+
+    /* Audio Media Queries */
+    .audio_skip {
+        width: 10%;
+    }
+
+    .audio_info {
+        width: 15%;
+    }
+
+    .audio {
+        width: 45%;
+    }
+
+    .audio_player {
+        height: 80px;
+    }
+
+    .audio_info img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Width 1250px */
+@media only screen and (max-width: 1250px) {
+     /* Media Queries Top Bar */
+    .top_wrapper_param {
+        width: 80%;
+    }
+
+
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 80%;
+    }
+
+
+        /* Music Info Track List, ALbum, Genre Media Queries */
+        .music_info_genre {
+            width: 80.5%;
+        }
+    
+        .music_info_album {
+            width: 80.5%;
+        }
+    
+        .music_info_tracklist {
+            width: 80.5%;
+        }
+
+
+            /* Audio Media Queries */
+           .audio_skip {
+               width: 10%;
+           }
+       
+           .audio_info {
+               width: 20%;
+           }
+       
+           .audio {
+               width: 50%;
+           }
+       
+           .audio_player {
+               height: 85px;
+           }
+       
+           .audio_info img {
+               width: 49px;
+               height: 49px;
+           }
+       
+}
+
+
+/* Widt 1100px */
+@media only screen and (max-width: 1100px) {
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 90%;
+    }
+
+
+    /* Music Info Track List, ALbum, Genre Media Queries */
+    .music_info_genre {
+        width: 90.5%;
+    }
+
+    .music_info_album {
+        width: 90.5%;
+    }
+
+    .music_info_tracklist {
+        width: 90.5%;
+    }
+
+
+        /* Audio Media Queries */
+       .audio_skip {
+           width: 10%;
+       }
+   
+       .audio_info {
+           width: 25%;
+       }
+   
+       .audio {
+           width: 55%;
+       }
+}
+
+
+/* Height 1100px */
+@media only screen and (max-height: 1100px) {
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 5%;
+    }
+}
+
+
+/* Height 760px */
+@media only screen and (max-height: 750px) {
+     /* Media Queries Top Bar */
+    .top_wrapper {
+        min-height: 8%;
+    }
+
+        /* Audio Media Queries */
+       .audio_player.active {
+           bottom: 14px;
+       }
+}
+
+
+/* Height 700px */
+@media only screen and (max-height: 700px) {
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 6%;
+    }
+}
+
+
+
+/* Height 500px */
+@media only screen and (max-height: 550px) {
+     /* Media Queries Top Bar */
+    .top_wrapper {
+        min-height: 10%;
+    }
+
+        /*Genre Bar Media Queries */
+        .genre_bar {
+            min-height: 7%;
+        }
+    
+}
+
+
+
+/*height 400px*/
+@media only screen and (max-height: 400px) {
+     /* Media Queries Top Bar */
+    .top_wrapper {
+        min-height: 12%;
+    }
+
+        /*Genre Bar Media Queries */
+        .genre_bar {
+            min-height: 7%;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+@media only screen and (max-height: 950px){
+    .track_list_left_heading_left{
+      width: 130px;
+      height: 130px;
+    }
+  }
+
+  @media only screen and (max-height: 840px){
+    .track_list_inner_right {
+      height: 45%;
+    }
+  }
+  @media only screen and (max-height: 730px){
+    .track_list_inner_right {
+      height: 60%;
+    }
+  }
