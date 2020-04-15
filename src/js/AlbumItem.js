@@ -34,6 +34,7 @@ class AlbumItem extends React.Component {
     obj.album = { cover_big: {}, title: {} };
     obj.album.cover_big = this.props.albumInfo.cover_big;
     obj.album.title = this.props.albumInfo.title;
+    obj.album.id = this.props.albumInfo.id;
     this.props.addFavourite(obj)
   }
 
@@ -45,7 +46,7 @@ class AlbumItem extends React.Component {
     /* Return */
     return (
 
-      <div className={this.props.musicId == this.props.value.id ? "track_item_album active" : "track_item_album"}>
+      <div className={this.props.itemInfo.musicId == this.props.value.id ? "track_item_album active" : "track_item_album"}>
         {/*(track info)*/}
         <div className="track_art_album" style={{ background: `url(${this.props.assets.cover_medium})`, backgroundSize: "cover" }}></div>
         <div className="track_info">
@@ -65,11 +66,11 @@ class AlbumItem extends React.Component {
           <div id={this.props.value.id} className="play_pause_album">
             <i
               onClick={(e) => this.playTrack(e)}
-              className={this.props.checkPlay == "true" && this.props.musicId == this.props.value.id ? "fa fa-play play_album disable" : "fa fa-play play_album"}>
+              className={this.props.playBack.checkPlay == "true" && this.props.itemInfo.musicId == this.props.value.id ? "fa fa-play play_album disable" : "fa fa-play play_album"}>
             </i>
             <i
               onClick={(e) => this.pauseTrack(e)}
-              className={this.props.checkPause == "false" && this.props.musicId == this.props.value.id ? "fa fa-pause pause_album active" : "fa fa-pause pause_album"}>
+              className={this.props.playBack.checkPause == "false" && this.props.itemInfo.musicId == this.props.value.id ? "fa fa-pause pause_album active" : "fa fa-pause pause_album"}>
             </i>
           </div>
         </div>

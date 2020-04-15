@@ -1,0 +1,98 @@
+
+        /* Genre Bar */
+        .genre_bar {
+            position: absolute;
+            width: 100%;
+            min-height: 4%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            background: white;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            z-index: 1000;
+            border-bottom: 1px solid hsl(0, 0%, 87%);
+  
+            .genre_bar_param {
+              border-right: 0.5px solid lightgrey;
+              width: 60%;
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+  
+              .genre_item {
+                font-size: 0.8rem;
+                z-index: 50;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                position: relative;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                color: grey;
+                width: 12.5%;
+                height: 100%;
+                border-left: 0.5px solid lightgrey;
+  
+                &:hover {
+                  color: grey;
+                  cursor: pointer;
+                }
+  
+                .genre_bar_item_border {
+                  position: absolute;
+                  bottom: 0;
+                  width: 100%;
+                  height: 3px;
+                }
+              }
+  
+              .genre_item_heart {
+                font-size: 0.8rem;
+                z-index: 50;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                position: relative;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                color: grey;
+                width: 7%;
+                height: 100%;
+                border-left: 0.5px solid lightgrey;
+  
+                &.active {
+                  color: hsl(12, 79%, 63%);
+                }
+  
+                &:hover {
+                  background: hsl(12, 79%, 63%);
+                  color: white;
+                  cursor: pointer;
+                }
+  
+              
+              }
+  
+         
+            }
+          }
+
+/* Stand Alone Styles */
+.genre_item:hover .genre_bar_item_border {
+    background: coral;
+  }
+  
+  .spacer_genre.active p {
+    display: block;
+  }
+

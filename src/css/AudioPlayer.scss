@@ -1,0 +1,127 @@
+  /* Audio Player */
+  .audio_player {
+    position: absolute;
+    bottom: -200px;
+    height: 60px;
+    width: 100%;
+    z-index: 1500;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-transition: 1000ms;
+    -o-transition: 1000ms;
+    transition: 1000ms;
+    border-top: 1px solid hsl(0, 0%, 87%);
+
+    &.active {
+      bottom: 0;
+      -webkit-transition: 1000ms;
+      -o-transition: 1000ms;
+      transition: 1000ms;
+    }
+
+   
+    .audio_info {
+      width: 10%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      overflow: hidden;
+      padding-bottom: 0.5rem;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .audio_player_titles {
+        width: 70%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        overflow: hidden;
+
+        .first {
+          font-size: 0.67rem;
+        }
+
+        p {
+          font-size: 0.8rem;
+          margin: 0;
+          padding-left: 0.4rem;
+          white-space: nowrap;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+
+        }
+      }
+    }
+
+    /* Audio Skip Section */
+    .audio_skip {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+      width: 5%;
+      font-size: 0.9rem;
+      opacity: 1;
+      margin-top: 0;
+      -webkit-transition: 800ms;
+      -o-transition: 800ms;
+      transition: 800ms;
+
+      &.hide {
+        pointer-events: none;
+      }
+
+       i {
+       
+        &:hover {
+          color: coral;
+          cursor: pointer;
+        }
+      }
+    
+    }
+
+    .audio {
+      width: 45%;
+
+      &:active,
+      &:focus,
+      &.active {
+        background-image: none;
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        outline: none !important;
+      }
+
+      &:focus {
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }

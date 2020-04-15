@@ -9,7 +9,7 @@ class AlbumPortal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pause: this.props.checkPause
+     
     }
   }
 
@@ -17,16 +17,11 @@ class AlbumPortal extends React.Component {
   /* Play Track */
   playTrack(value, assets) {
     this.props.playTrack(value, assets)
-    this.setState({
-      pause: "false"
-    })
   }
   /* Pause Track */
   pauseTrack() {
     this.props.pauseTrack();
-    this.setState({
-      pause: "true"
-    })
+
   }
 
 
@@ -81,8 +76,7 @@ class AlbumPortal extends React.Component {
           /* Adding New List Items */
           trackList.push(<AlbumItem
             /*PlayBack*/
-            checkPlay={this.props.checkPlay}
-            checkPause={this.props.checkPause}
+            playBack={this.props.playBack}
             /*Functions*/
             playTrack={(value, assets) => this.playTrack(value, assets)}
             pauseTrack={(e) => this.pauseTrack(e)}
@@ -95,9 +89,7 @@ class AlbumPortal extends React.Component {
             timeInfo={timeInfo}
             favouriteStyling={favouriteStyling}
             albumInfo={this.props.albumInfo}
-            musicId={this.props.musicId}
-
-
+            itemInfo={this.props.itemInfo}
           />)
         })
       }
@@ -150,15 +142,13 @@ class AlbumPortal extends React.Component {
             <div className="overlap_info">
               <h5 className="title">{this.props.albumInfo.artist.name}</h5>
               <h4>{this.props.albumInfo.title}</h4>
-              <div className="playback_status" >
+              <div className="playback_status">
                 <h5 id="title_right">
-                  {this.state.pause != "true"  ? "NOW PLAYING  " : "PAUSED  "}
-                  {typeof this.props.currentMusicItemTitle != 'undefined' && this.props.albumReady == "true" ? `${this.props.currentMusicItemTitle}` : "--"}
+                  {this.props.playBack.trackCanPlay != "false"   ? "NOW PLAYING  " : "PAUSED  "}
+                  {typeof this.props.itemInfo.musicItemTitle != 'undefined' && this.props.ready == "true" ? `${this.props.itemInfo.musicItemTitle}` : "--"}
                 </h5>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>

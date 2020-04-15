@@ -1,0 +1,89 @@
+/* Width 1400px */
+@media only screen and (max-width: 1400px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 70%;
+    }
+
+}
+
+/* Width 1250px */
+@media only screen and (max-width: 1250px) {
+
+
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 80%;
+    }
+
+}
+
+
+/* Widt 1100px */
+@media only screen and (max-width: 1100px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar_param {
+        width: 90%;
+    }
+
+}
+
+
+/* Height 1100px */
+@media only screen and (max-height: 1100px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 5%;
+    }
+}
+
+
+/* Height 760px */
+@media only screen and (max-height: 750px) {
+
+    /* Media Queries Top Bar */
+    .top_wrapper {
+        min-height: 8%;
+    }
+
+    /* Audio Media Queries */
+    .audio_player.active {
+        bottom: 14px;
+    }
+}
+
+
+/* Height 700px */
+@media only screen and (max-height: 700px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 6%;
+    }
+}
+
+
+
+/* Height 500px */
+@media only screen and (max-height: 550px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 7%;
+    }
+
+}
+
+
+
+/*height 400px*/
+@media only screen and (max-height: 400px) {
+
+    /*Genre Bar Media Queries */
+    .genre_bar {
+        min-height: 7%;
+    }
+}

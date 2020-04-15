@@ -43,7 +43,7 @@ class TrackListItem extends React.Component {
 
     /* Render */
     return (
-      <div className={this.props.musicId == this.props.value.id ? "track_item_track_list active" : "track_item_track_list"}>
+      <div className={this.props.itemInfo.musicId == this.props.value.id ? "track_item_track_list active" : "track_item_track_list"}>
         {/*(track info)*/}
         <div className="track_art" style={{ background: `url("${this.props.value.album.cover_medium}")`, backgroundSize: "contain", backgroundPosition: "center" }}></div>
         <div className="track_info_track_list">
@@ -60,10 +60,10 @@ class TrackListItem extends React.Component {
           {/*(playback interface)*/}
           <div id={this.props.value.id} className="play_pause_track_list">
             <i onClick={(e) => this.playTrack(e)}
-              className={this.props.checkPlay == "true" && this.props.musicId == this.props.value.id ? "fa fa-play play_track_list disable" : "fa fa-play play_track_list"}>
+              className={this.props.playBack.checkPlay == "true" && this.props.itemInfo.musicId == this.props.value.id ? "fa fa-play play_track_list disable" : "fa fa-play play_track_list"}>
             </i>
             <i onClick={(e) => this.pauseTrack(e)}
-              className={this.props.checkPause == "false" && this.props.musicId == this.props.value.id ? "fa fa-pause pause_track_list active" : "fa fa-pause pause_track_list"}></i>
+              className={this.props.playBack.checkPause == "false" && this.props.itemInfo.musicId == this.props.value.id ? "fa fa-pause pause_track_list active" : "fa fa-pause pause_track_list"}></i>
           </div>
         </div>
       </div>

@@ -70,12 +70,12 @@ class Musicitem extends React.Component {
           {/* top item section */}
           <div className='section_top'>
             <div style={{ background: `url(${this.props.info.album.cover_big})`, backgroundSize: 'cover', backgroundPosition: "center" }} className="section_top_inner">
-              <div className={this.props.selector == this.props.musicId
-                || this.props.skipActive == "true" && this.props.selector == this.props.musicId ? "play_song active" : "play_song"}>
+              <div className={this.props.selector == this.props.itemInfo.musicId
+                || this.props.playBack.skipActive == "true" && this.props.selector == this.props.itemInfo.musicId ? "play_song active" : "play_song"}>
                 <i onClick={(e) => this.playSong(e)}
-                  className={this.props.checkPlay == "true" && this.props.selector == this.props.musicId ? "fa fa-play play control_change" : "fa fa-play play "}></i>
+                  className={this.props.playBack.checkPlay == "true" && this.props.selector == this.props.itemInfo.musicId ? "fa fa-play play control_change" : "fa fa-play play "}></i>
                 <i onClick={(e) => this.pauseSong(e)}
-                  className={this.props.checkPlay == "true" && this.props.selector == this.props.musicId ? "fa fa-pause pause control_change" : "fa fa-pause pause"}></i>
+                  className={this.props.playBack.checkPlay == "true" && this.props.selector == this.props.itemInfo.musicId ? "fa fa-pause pause control_change" : "fa fa-pause pause"}></i>
               </div>
             </div>
           </div>

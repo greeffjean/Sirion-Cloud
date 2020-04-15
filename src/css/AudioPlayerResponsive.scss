@@ -1,0 +1,95 @@
+
+/* Width 1400px */
+@media only screen and (max-width: 1400px) {
+
+    /* Audio Media Queries */
+    .audio_skip {
+        width: 10%;
+    }
+
+    .audio_info {
+        width: 15%;
+    }
+
+    .audio {
+        width: 45%;
+    }
+
+    .audio_player {
+        height: 80px;
+    }
+
+    .audio_info img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Width 1250px */
+@media only screen and (max-width: 1250px) {
+            /* Audio Media Queries */
+           .audio_skip {
+               width: 10%;
+           }
+       
+           .audio_info {
+               width: 20%;
+           }
+       
+           .audio {
+               width: 50%;
+           }
+       
+           .audio_player {
+               height: 85px;
+           }
+       
+           .audio_info img {
+               width: 49px;
+               height: 49px;
+           }
+       
+}
+
+
+/* Widt 1100px */
+@media only screen and (max-width: 1100px) {
+
+        /* Audio Media Queries */
+       .audio_skip {
+           width: 10%;
+       }
+   
+       .audio_info {
+           width: 25%;
+       }
+   
+       .audio {
+           width: 55%;
+       }
+}
+
+
+
+/* Height 760px */
+@media only screen and (max-height: 750px) {
+        /* Audio Media Queries */
+       .audio_player.active {
+           bottom: 14px;
+       }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

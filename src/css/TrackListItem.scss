@@ -51,6 +51,11 @@
           overflow: hidden;
           -o-text-overflow: ellipsis;
           text-overflow: ellipsis;
+
+          &:hover {
+            cursor: pointer;
+            color: hsl(12, 79%, 63%);
+        }
         }
 
         div {

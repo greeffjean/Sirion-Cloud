@@ -6,11 +6,11 @@ import TrackListItem from './TrackListItem';
 
 
 
-class Track_listPortal extends React.Component {
+class TrackListPortal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pause: this.props.checkPause
+     
     }
   }
 
@@ -18,18 +18,12 @@ class Track_listPortal extends React.Component {
   /*PLAYBACK*/
   /* Play Track */
   playTrack(value) {
-    this.props.playTrackListTrack(value)
-    this.setState({
-      pause: "false"
-    })
+    this.props.playTrack(value)
   }
 
   /* Pause Track */
   pauseTrack() {
     this.props.pauseTrack();
-    this.setState({
-      pause: "true"
-    })
   }
 
 
@@ -51,17 +45,17 @@ class Track_listPortal extends React.Component {
 
   /* Change To Artist Portal */
   moreTracks() {
-    this.props.moreTracks(this.props.trackListArtist[0].artist.name)
+    this.props.moreTracks(this.props.artistTracks[0].artist.name)
   }
 
 
   /* Render */
   render() {
-    if (this.props.trackListReady === "true") {
+    if (this.props.ready === "true") {
       /* Render Track_list List Items */
-      if (this.props.trackListReady === "true") {
+      if (this.props.ready === "true") {
         var trackList = [];
-        this.props.trackListArtist.map(value => {
+        this.props.artistTracks.map(value => {
 
           /* Process data and output correct styling and format of time and favourite icon */
           var favouriteStyling = [];
@@ -86,8 +80,7 @@ class Track_listPortal extends React.Component {
           /* Adding New List Items */
           trackList.push(< TrackListItem
             /*PlayBack*/
-            checkPlay={this.props.checkPlay}
-            checkPause={this.props.checkPause}
+            playBack={this.props.playBack}
             /*Functions*/
             addFavourite={(value) => this.addFavourite(value)}
             changeToAlbum={(id) => this.changeToAlbum(id)}
@@ -99,7 +92,7 @@ class Track_listPortal extends React.Component {
             timeInfo={timeInfo}
             favouriteStyling={favouriteStyling}
             albumInfo={this.props.albumInfo}
-            musicId={this.props.musicId}
+            itemInfo={this.props.itemInfo}
           />)
         })
       }
@@ -108,8 +101,8 @@ class Track_listPortal extends React.Component {
       var currentTrack = [];
 
       /* Render Right Track Info Data */
-      this.props.trackListArtist.map(value => {
-        if (value.id === this.props.musicId) {
+      this.props.artistTracks.map(value => {
+        if (value.id === this.props.itemInfo.musicId) {
           currentTrack.push(value)
         }
       })
@@ -126,17 +119,17 @@ class Track_listPortal extends React.Component {
           <div className="track_list_inner_left_heading">
             <div className="track_list_inner_left_heading_left">
                <div className="track_list_art"
-              style={{ background: `url("${this.props.trackListArtist[0].artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }} >
+              style={{ background: `url("${this.props.artistTracks[0].artist.picture_medium}")`, backgroundSize: "cover", backgroundPosition: "center" }} >
             </div>
             </div>
             <div className="track_list_inner_left_heading_right">
-              <div className="track_list_inner_left_heading_right_top"> <h2>{this.props.trackListArtist[0].artist.name}</h2> <h1>Track List</h1></div>
+              <div className="track_list_inner_left_heading_right_top"> <h2>{this.props.artistTracks[0].artist.name}</h2> <h1>Track List</h1></div>
               <div className="track_list_inner_left_heading_right_bottom">
                 <div className=" track_list_inner_left_heading_right_bottom_top">
-                  <i className="fa fa-music"> {this.props.trackListInfo.total}</i>
-                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id}`}>Facebook</a>
-                  <a href={`https://twitter.com/home?status=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id} `}>Twitter</a>
-                  <a href={`https://pinterest.com/pin/create/button/?url=https://www.deezer.com/en/artist/${this.props.trackListArtist[0].artist.id}&media=&description=`}>Pintrest</a>
+                  <i className="fa fa-music"> {this.props.info.total}</i>
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=https://www.deezer.com/en/artist/${this.props.artistTracks[0].artist.id}`}>Facebook</a>
+                  <a href={`https://twitter.com/home?status=https://www.deezer.com/en/artist/${this.props.artistTracks[0].artist.id} `}>Twitter</a>
+                  <a href={`https://pinterest.com/pin/create/button/?url=https://www.deezer.com/en/artist/${this.props.artistTracks[0].artist.id}&media=&description=`}>Pintrest</a>
                 </div>
                 <div onClick={(e) => this.changeBackToAlbum(e)} className=" track_list_inner_left_heading_right_bottom_bottom bottom_special_align">
                   <p>Return to {this.props.albumChangeBack.title}</p>
@@ -162,18 +155,17 @@ class Track_listPortal extends React.Component {
         <div className="track_list_inner_right">
           <div className="track_list_inner_right_information">
             <div className="track_list_art_right">
-               <img src={currentTrack.length > 0 ? `${currentTrack[0].album.cover_big}` : `${this.props.trackListArtist[0].artist.picture_big}`}></img> 
+               <img src={currentTrack.length > 0 ? `${currentTrack[0].album.cover_big}` : `${this.props.artistTracks[0].artist.picture_big}`}></img> 
                </div>;
             <div className="overlap_info">
               <h5 className="title">{currentTrack.length > 0 ? currentTrack[0].title : "--"}</h5>
               <h4>{currentTrack.length > 0 ? currentTrack[0].album.title : "--"}</h4>
               <div className="playback_status">
                 <h5 id="title_right">
-                  {this.state.pause != "true" ? "NOW PLAYING  " : "PAUSED  "}
-                  {typeof this.props.currentMusicItemTitle != "undefined" ? `${this.props.currentMusicItemTitle}` : `--`}
+                  {this.props.playBack.trackCanPlay != "false" ? "NOW PLAYING  " : "PAUSED  "}
+                  {typeof this.props.itemInfo.musicItemTitle != "undefined" ? `${this.props.itemInfo.musicItemTitle}` : `--`}
                 </h5>
               </div>
-
             </div>
           </div>
         </div>
@@ -184,7 +176,7 @@ class Track_listPortal extends React.Component {
 }
 
 
-export default Track_listPortal;
+export default TrackListPortal;
 
 
 
