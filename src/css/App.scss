@@ -1,9 +1,30 @@
-
-
 /* Main Container  */
-.main_wrapper{
-width: 100vw;
-height: 100vh;
-overflow-x: scroll;
-}
+.intro {
+    width: 60vw;
+    height: 30vh;
+    background: hsla(0, 0%, 100%, 0.94);
+    position: absolute;
+    z-index: 2000;
+    left: 20%;
+    right: 20%;
+    top: 10%;
 
+    &.remove {
+        display: none;
+        }
+        div{
+            width: 70%;
+            height: 90%;
+            color: darkgrey;
+            overflow: scroll;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+
+            p{
+                text-align: center;
+            }
+        }
+
+}

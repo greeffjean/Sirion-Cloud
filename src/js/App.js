@@ -9,10 +9,20 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      intro: 'true',
       characters: [],
       music_list: [],
     }
 
+  }
+
+  closeIntro(){
+    console.log("hello")
+    this.setState({
+      intro: 'false',
+      characters: this.state.characters,
+      music_list: this.state.music_list,
+    })
   }
 
 
@@ -38,6 +48,13 @@ class App extends React.Component {
     return (
       <div className="container" style={{ height: `${window.innerHeight}`, width: `${window.innerWidth}` }} >
         {screenSizeUnsupportedMessage}
+        <div className={this.state.intro == "true" ? "intro" : "intro remove" } >
+        <p onClick={(e) => this.closeIntro(e)} style={{position: "absolute", left: "0", padding: "1rem", color: "grey"}}>Close</p>
+        <div>
+        <p> Welcome to Sirion Cloud, here you can search titles, explore albums, explore artist tracklists, add favourites and 
+          explore genre's so be sure not to miss these cool features and explore the page for links, enjoy! </p>
+        </div>
+        </div>
         <MusicInfo key="" />
       </div>
     );
