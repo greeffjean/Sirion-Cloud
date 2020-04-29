@@ -404,6 +404,7 @@ class MusicInfo extends React.Component {
 
   /* Adds and Removes Items */
   addFavourites(value) {
+    console.log(value)
     /* (favourite variables) */
     var checkPlay = this.state.playBack.checkPlay;
     var musicList = this.state.musicList;
@@ -428,6 +429,7 @@ class MusicInfo extends React.Component {
         }
       })
     }
+    
     /*( filtering duplicates )*/
     if (condition == "false") {
       var filteredArray = favourites.filter(function (x) {

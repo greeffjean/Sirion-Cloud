@@ -32,7 +32,7 @@ class AlbumItem extends React.Component {
     /* add title and album_art to object */
     var obj = this.props.value;
     obj.album = { cover_big: {}, title: {} };
-    obj.album.cover_big = this.props.albumInfo.cover_big;
+    obj.album.cover_small = this.props.albumInfo.cover_big;
     obj.album.title = this.props.albumInfo.title;
     obj.album.id = this.props.albumInfo.id;
     this.props.addFavourite(obj)
