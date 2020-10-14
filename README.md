@@ -41,17 +41,6 @@ none
 ## Acknowledgments
 This project is intended for demo purposes only, therefore not all features are present and or have been refined.
 
-## Changes
-2. Have a look at using react-router for SPA client-side routing (between album_portal and track_list etc...)
-3. Define genre as array to render
-4. render arrays in jsx syntax (less verbose)
-7. Try to see if component props count can be less verbose
-8. Put small things like social share in component (makes for cleaner code to read that’s all) -> in general try to split into more components
-9. The suggestions above are mostly to further improve. The one thing however that I would say is important in that list is the useCamelCase. Javascript & react’s normal styling is camel case instead of snake_case.
-10. I would say try and see if you van split up the big MusicInfo component into a bit more components. And moving your styling more to SASS (the css pre-compiler) or use the react styled-components library. It would make the code more readable & maintainable
-11. I think if you add some tests to sirion cloud. It need not be exhaustive thests, just a few that shows you know the basics of things like mocha and chai-js . It would definitely be very beneficial.
-12. React Router between album portal and tracklist.
-
 ## Auto Genrerated 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
