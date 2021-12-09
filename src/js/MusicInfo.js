@@ -66,7 +66,7 @@ class MusicInfo extends React.Component {
 
 
   /* HOME STATE LIST */
-  /* SEARCH*/
+  /* SEARCH */
   /* Input Search Part1  */
   changeName(event) {
     /*( on render always start at top )*/
@@ -164,7 +164,6 @@ class MusicInfo extends React.Component {
       return
     }
     else {
-      console.log("feert")
       /*( on render always start at top )*/
       this.musicContainerRef.current.scrollTo(0, 0);
       /*(trigger load)*/
@@ -178,11 +177,11 @@ class MusicInfo extends React.Component {
       /*( fetch )*/
       var newList = [];
       MusicDatabase.searchPlayList(id).then(response => {
-        response.tracks.data.map(value => {
+        response.tracks && response.tracks.data ? response.tracks.data.map(value => {
           if (value.preview != "" && value.readable != false) {
             newList.push(value)
           }
-        })
+        }) : console.log(' response.tracks.data is false, this id:', id, 'did not work!' );
         /*( apoint data )*/
         this.setState({
           playBack: {
@@ -286,7 +285,6 @@ class MusicInfo extends React.Component {
   }
 
 
-
   /* PLAYLIST */
   /* Change To Tracklist */
   changeToTrackList(name) {
@@ -362,7 +360,6 @@ class MusicInfo extends React.Component {
   }
 
 
-
   /* FAVOURITES */
   /* Change State To Favourites */
   changeToFavourites() {
@@ -404,7 +401,6 @@ class MusicInfo extends React.Component {
 
   /* Adds and Removes Items */
   addFavourites(value) {
-    console.log(value)
     /* (favourite variables) */
     var checkPlay = this.state.playBack.checkPlay;
     var musicList = this.state.musicList;

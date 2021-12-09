@@ -15,7 +15,6 @@ class Musicitem extends React.Component {
   /* PLAYBACK*/
   /* Play Song*/
   playSong() {
-    console.log(this.props.info)
     var track = this.props.info.preview;
     var album = this.props.info.album.title;
     var title = this.props.info.title_short;

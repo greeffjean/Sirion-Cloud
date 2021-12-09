@@ -17,7 +17,6 @@ class App extends React.Component {
   }
 
   closeIntro(){
-    console.log("hello")
     this.setState({
       intro: 'false',
       characters: this.state.characters,
